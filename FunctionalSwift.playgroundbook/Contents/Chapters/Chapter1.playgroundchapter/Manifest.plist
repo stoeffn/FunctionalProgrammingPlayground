@@ -5,8 +5,10 @@
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Name</key>
-	<string>Example Page</string>
-	<key>LiveViewMode</key>
-	<string>HiddenByDefault</string>
+	<string>Functional Swift</string>
+	<key>Pages</key>
+	<array>
+		<string>Introduction.playgroundpage</string>
+	</array>
 </dict>
 </plist>

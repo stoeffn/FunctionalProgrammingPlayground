@@ -9,7 +9,7 @@
 	<key>Name</key>
 	<string>Starter</string>
 	<key>ContentIdentifier</key>
-	<string>com.example.apple-samplecode.Starter</string>
+	<string>steffen-ryll.functional-swift</string>
 	<key>DeploymentTarget</key>
 	<string>ios10.0</string>
 	<key>Chapters</key>
