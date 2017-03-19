@@ -7,14 +7,16 @@
 	<key>ContentVersion</key>
 	<string>1.0</string>
 	<key>Name</key>
-	<string>Starter</string>
+	<string>swift.reduce()</string>
 	<key>ContentIdentifier</key>
-	<string>steffen-ryll.functional-swift</string>
+	<string>steffen-ryll.swift-reduce</string>
 	<key>DeploymentTarget</key>
 	<string>ios10.0</string>
 	<key>Chapters</key>
 	<array>
 		<string>Chapter1.playgroundchapter</string>
 	</array>
+	<key>ImageReference</key>
+	<string>Icon.png</string>
 </dict>
 </plist>
