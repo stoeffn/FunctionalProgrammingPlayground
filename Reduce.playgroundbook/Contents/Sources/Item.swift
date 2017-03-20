@@ -13,7 +13,7 @@ public class Item {
     var size: CGSize = .zero {
         didSet {
             label.fontSize = size.height * 0.6
-            label.position = CGPoint(x: 0, y: -size.height * 0.3)
+            label.verticalAlignmentMode = .center
         }
     }
 }

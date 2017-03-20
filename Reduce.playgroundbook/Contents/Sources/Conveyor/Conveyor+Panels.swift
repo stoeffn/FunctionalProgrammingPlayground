@@ -13,11 +13,11 @@ extension Conveyor {
     }
 
     private func numberOfPanels(forLength length: CGFloat) -> Int {
-        return Int(length / panelHeight) + 1
+        return Int(ceil(length / panelHeight)) + 1
     }
 
     private func yPosition(forPanelAt index: Int) -> CGFloat {
-        return CGFloat(index) * panelHeight - length / 2
+        return CGFloat(index) * panelHeight - length / 2 + panelHeight / 2
     }
 
     private var panelAction: SKAction {

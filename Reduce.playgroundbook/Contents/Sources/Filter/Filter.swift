@@ -1,56 +1,54 @@
 import SpriteKit
 
-/*public class Filter: SKSpriteNode {
-    let direction: Direction
-    let isIncluded: (Item) -> Bool
-
-    public init(direction: Direction = .right, _ isIncluded: @escaping (Item) -> Bool) {
-        self.direction = direction
-        self.isIncluded = isIncluded
-        let size = CGSize(width: Constants.conveyerHeight, height: Constants.conveyerHeight * 3)
-        super.init(texture: nil, color: .gray, size: size)
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+public class Filter {
+    public let node: SKNode = SKNode()
+    public let numberOfLanes: Int
 
     public var output: Chainable?
+
+    var indicators = [SKSpriteNode]()
+
+    // MARK: - Life Cycle
+
+    public init(numberOfLanes: Int = 1) {
+        self.numberOfLanes = max(numberOfLanes, 1)
+
+        let texture = SKTexture(image: UIImage(named: "Filter")!)
+        let box = SKSpriteNode(texture: texture)
+        box.centerRect = CGRect(x: 0.4, y: 0, width: 0.2, height: 1)
+        box.xScale = (size.width + 32) / texture.size().width
+        box.yScale = size.height / texture.size().height
+        box.zPosition = 1
+        node.addChild(box)
+
+        let exlusionConveyor = Conveyor(length: 256, numberOfLanes: 1)
+        exlusionConveyor.node.position = CGPoint(x: size.width / 2 + 128, y: 0)
+        exlusionConveyor.node.zRotation = .pi / 2
+        node.addChild(exlusionConveyor.node)
+
+        let label = SKLabelNode(fontNamed: "Menlo-Bold")
+        label.verticalAlignmentMode = .center
+        label.text = ".filter(isHappy)"
+        label.color = .white
+        label.fontSize = 18
+        label.zPosition = 1
+        node.addChild(label)
+
+        for index in 0..<numberOfLanes {
+            let indicatorTexture = SKTexture(image: UIImage(named: "Indicator")!)
+            let indicator = SKSpriteNode(texture: indicatorTexture)
+            indicator.position = CGPoint(x: xPosition(forLane: index), y: (texture.size().height - indicatorTexture.size().height) / 2)
+            indicator.zPosition = 1
+            indicator.alpha = 0.9
+
+            indicators.append(indicator)
+            node.addChild(indicator)
+        }
+    }
+
+    // MARK: - Helper Methods
+
+    var size: CGSize {
+        return CGSize(width: conveyerWidth * CGFloat(numberOfLanes), height: conveyerWidth)
+    }
 }
-
-extension Filter: Chainable {
-    public func setAnchor(_ anchor: CGPoint) {
-        position = anchor - CGPoint(x: 0, y: Constants.conveyerHeight)
-    }
-
-    public var outputAnchor: CGPoint {
-        return position - CGPoint(x: 0, y: Constants.conveyerHeight)
-    }
-
-    public var trashAnchor: CGPoint {
-        return position + CGPoint(x: direction.xFactor * 256, y: Constants.conveyerHeight)
-    }
-
-    public func startPosition(for item: Item) -> CGPoint {
-        return .zero
-    }
-
-    public func add(_ item: Item) {
-        let action = isIncluded(item) ? moveToOutputAction(item) : moveToTrashAction(item)
-        item.run(action)
-    }
-
-    public func moveToOutputAction(_ item: Item) -> SKAction {
-        return .sequence([
-            .move(to: outputAnchor, duration: 1),
-            .run { self.output?.add(item) }
-        ])
-    }
-
-    public func moveToTrashAction(_ item: Item) -> SKAction {
-        return .sequence([
-            .move(to: trashAnchor, duration: 1),
-            .removeFromParent()
-        ])
-    }
-}*/

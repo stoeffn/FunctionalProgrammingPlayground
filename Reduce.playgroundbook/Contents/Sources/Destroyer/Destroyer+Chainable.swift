@@ -8,6 +8,8 @@ extension Destroyer: Chainable {
     }
 
     public func add(_ item: Item, toLane lane: Int) {
-        item.node.removeFromParent()
+        item.node.run(.scale(to: 0.05, duration: 0.3)) {
+            item.node.removeFromParent()
+        }
     }
 }

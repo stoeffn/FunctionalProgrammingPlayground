@@ -17,7 +17,7 @@ extension Conveyor {
     }
 
     private func numberOfBorderTiles(forLength length: CGFloat) -> Int {
-        return Int(ceil(length / borderTexture.size().height))
+        return Int(ceil(length / borderTexture.size().height)) + 1
     }
 
     private func yPosition(forBorderTileAt index: Int) -> CGFloat {

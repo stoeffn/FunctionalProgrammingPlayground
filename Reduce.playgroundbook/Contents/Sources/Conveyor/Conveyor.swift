@@ -2,9 +2,8 @@ import SpriteKit
 
 public class Conveyor {
     public let node: SKNode = SKCropNode()
-
-    let length: CGFloat
-    let numberOfLanes: Int
+    public let numberOfLanes: Int
+    public let length: CGFloat
 
     private var panels = [SKSpriteNode]()
     public var output: Chainable?
@@ -26,10 +25,6 @@ public class Conveyor {
     // MARK: - Helper Methods
 
     var size: CGSize {
-        return .init(width: Constants.conveyerWidth * CGFloat(numberOfLanes) + borderWidth * 2, height: length)
-    }
-
-    func movementDuration(forDistance distance: CGFloat) -> TimeInterval {
-        return abs(Double(distance) / 128)
+        return CGSize(width: conveyerWidth * CGFloat(numberOfLanes) + borderWidth * 2, height: length)
     }
 }
