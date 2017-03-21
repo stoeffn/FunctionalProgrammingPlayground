@@ -9,10 +9,12 @@ extension Machine: Chainable {
         return parts.last?.outputAnchor ?? .zero
     }
 
-    public func attach(to anchor: CGPoint) { }
+    public func attach(to anchor: CGPoint) {
+        node.position = anchor + CGPoint(x: 0, y: conveyorWidth / 2)
+    }
 
     public func add(_ item: Item, toLane lane: Int) {
-        item.size = CGSize(width: conveyerWidth, height: conveyerWidth)
+        item.size = CGSize(width: conveyorWidth, height: conveyorWidth)
 
         node.addChild(item.node)
         parts.first?.add(item, toLane: lane)

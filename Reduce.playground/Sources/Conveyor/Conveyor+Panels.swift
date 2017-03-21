@@ -1,13 +1,6 @@
 import SpriteKit
 
 extension Conveyor {
-    private var panelTexture: SKTexture {
-        guard let image = UIImage(named: "ConveyorPanel") else {
-            fatalError("Conveyor panel texture is mising.")
-        }
-        return SKTexture(image: image)
-    }
-
     private var panelHeight: CGFloat {
         return panelTexture.size().height * 0.8
     }

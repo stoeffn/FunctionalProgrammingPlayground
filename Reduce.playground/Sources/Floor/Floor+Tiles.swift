@@ -1,13 +1,6 @@
 import SpriteKit
 
 extension Floor {
-    private var tileTexture: SKTexture {
-        guard let image = UIImage(named: "FloorTile") else {
-            fatalError("Floor tile texture is mising.")
-        }
-        return SKTexture(image: image)
-    }
-
     private func position(forTileAtX x: Int, y: Int) -> CGPoint {
         let offset = CGPoint(x: tileTexture.size().width, y: tileTexture.size().height) / 2
         return CGPoint(x: CGFloat(x) * tileTexture.size().width, y: CGFloat(y) * tileTexture.size().height) + offset

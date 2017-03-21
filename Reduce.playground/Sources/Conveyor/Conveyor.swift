@@ -22,9 +22,15 @@ public class Conveyor {
         setupBorder()
     }
 
+    // MARK: - Textures
+
+    let panelTexture = SKTexture(imageNamed: "ConveyorPanel")
+
+    let borderTexture = SKTexture(imageNamed: "ConveyorBorder")
+
     // MARK: - Helper Methods
 
     var size: CGSize {
-        return CGSize(width: conveyerWidth * CGFloat(numberOfLanes) + borderWidth * 2, height: length)
+        return CGSize(width: conveyorWidth * CGFloat(numberOfLanes) + borderWidth * 2, height: length)
     }
 }

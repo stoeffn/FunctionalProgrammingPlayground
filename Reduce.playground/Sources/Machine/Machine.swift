@@ -5,16 +5,13 @@ public class Machine {
 
     public var output: Chainable?
     private(set) var parts = [Chainable]()
-    private var anchor: CGPoint
 
-    public init(anchor: CGPoint = .zero, parts: [Chainable]) {
-        self.anchor = anchor
-
+    public init(parts: [Chainable]) {
         parts.forEach(add)
     }
 
     public func add(_ part: Chainable) {
-        part.attach(to: parts.last?.outputAnchor ?? anchor)
+        part.attach(to: parts.last?.outputAnchor ?? node.position)
 
         parts.last?.output = part
         parts.append(part)

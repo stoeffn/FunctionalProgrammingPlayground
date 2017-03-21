@@ -16,6 +16,6 @@ public protocol Chainable: class {
 
 extension Chainable {
     func xPosition(forLane lane: Int) -> CGFloat {
-        return CGFloat(lane - numberOfLanes / 2) * conveyerWidth
+        return CGFloat(lane - numberOfLanes / 2) * conveyorWidth
     }
 }

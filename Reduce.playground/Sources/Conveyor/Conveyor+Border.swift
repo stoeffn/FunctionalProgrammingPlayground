@@ -9,13 +9,6 @@ extension Conveyor {
         }
     }
 
-    private var borderTexture: SKTexture {
-        guard let image = UIImage(named: "ConveyorBorder") else {
-            fatalError("Conveyor border texture is mising.")
-        }
-        return SKTexture(image: image)
-    }
-
     private func numberOfBorderTiles(forLength length: CGFloat) -> Int {
         return Int(ceil(length / borderTexture.size().height)) + 1
     }

@@ -11,4 +11,8 @@ public class Floor {
 
         setupTiles()
     }
+
+    // MARK: - Textures
+
+    let tileTexture = SKTexture(imageNamed: "FloorTile")
 }

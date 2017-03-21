@@ -3,6 +3,7 @@ import SpriteKit
 public class Filter {
     public let node: SKNode = SKNode()
     public let numberOfLanes: Int
+    public let isIncluded: (Item) -> Bool
 
     public var output: Chainable?
 
@@ -10,45 +11,67 @@ public class Filter {
 
     // MARK: - Life Cycle
 
-    public init(numberOfLanes: Int = 1) {
+    public init(numberOfLanes: Int = 1, description: String, isIncluded: @escaping (Item) -> Bool) {
         self.numberOfLanes = max(numberOfLanes, 1)
+        self.isIncluded = isIncluded
 
-        let texture = SKTexture(image: UIImage(named: "Filter")!)
-        let box = SKSpriteNode(texture: texture)
-        box.centerRect = CGRect(x: 0.4, y: 0, width: 0.2, height: 1)
-        box.xScale = (size.width + 32) / texture.size().width
-        box.yScale = size.height / texture.size().height
-        box.zPosition = 1
-        node.addChild(box)
+        node.addChild(casingNode)
+        node.addChild(exclusionConveyor.node)
+        node.addChild(labelNode)
 
-        let exlusionConveyor = Conveyor(length: 256, numberOfLanes: 1)
-        exlusionConveyor.node.position = CGPoint(x: size.width / 2 + 128, y: 0)
-        exlusionConveyor.node.zRotation = .pi / 2
-        node.addChild(exlusionConveyor.node)
+        labelNode.text = ".filter(\(description))"
 
-        let label = SKLabelNode(fontNamed: "Menlo-Bold")
-        label.verticalAlignmentMode = .center
-        label.text = ".filter(isHappy)"
-        label.color = .white
-        label.fontSize = 18
-        label.zPosition = 1
-        node.addChild(label)
-
-        for index in 0..<numberOfLanes {
-            let indicatorTexture = SKTexture(image: UIImage(named: "Indicator")!)
-            let indicator = SKSpriteNode(texture: indicatorTexture)
-            indicator.position = CGPoint(x: xPosition(forLane: index), y: (texture.size().height - indicatorTexture.size().height) / 2)
-            indicator.zPosition = 1
-            indicator.alpha = 0.9
-
+        for lane in 0..<numberOfLanes {
+            let indicator = self.indicator(forLane: lane)
             indicators.append(indicator)
             node.addChild(indicator)
         }
     }
 
+    // MARK: - Textures
+
+    let casingTexture = SKTexture(imageNamed: "Filter")
+
+    let indicatorTexture = SKTexture(imageNamed: "Indicator")
+
+    // MARK: - Nodes
+
+    private lazy var casingNode: SKSpriteNode = {
+        let node = SKSpriteNode(texture: self.casingTexture)
+        node.centerRect = CGRect(x: 0.4, y: 0, width: 0.2, height: 1)
+        node.xScale = (self.size.width + 32) / self.casingTexture.size().width
+        node.yScale = self.size.height / self.casingTexture.size().height
+        node.zPosition = 1
+        return node
+    }()
+
+    private lazy var labelNode: SKLabelNode = {
+        let label = SKLabelNode(fontNamed: "Menlo-Bold")
+        label.verticalAlignmentMode = .center
+        label.color = .white
+        label.fontSize = self.size.height / 4
+        label.zPosition = 1
+        return label
+    }()
+
+    private lazy var exclusionConveyor: Conveyor = {
+        let conveyor = Conveyor(length: 256, numberOfLanes: 1)
+        conveyor.node.position = CGPoint(x: self.size.width / 2 + 128, y: 0)
+        conveyor.node.zRotation = .pi / 2
+        return conveyor
+    }()
+
+    private func indicator(forLane lane: Int) -> SKSpriteNode {
+        let indicator = SKSpriteNode(texture: indicatorTexture)
+        indicator.position = CGPoint(x: xPosition(forLane: lane), y: (size.height - indicatorTexture.size().height) / 2)
+        indicator.zPosition = 1
+        indicator.alpha = 0.9
+        return indicator
+    }
+
     // MARK: - Helper Methods
 
     var size: CGSize {
-        return CGSize(width: conveyerWidth * CGFloat(numberOfLanes), height: conveyerWidth)
+        return CGSize(width: conveyorWidth * CGFloat(numberOfLanes), height: conveyorWidth)
     }
 }

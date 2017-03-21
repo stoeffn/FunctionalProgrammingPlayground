@@ -1,36 +1,22 @@
-import SpriteKit
-import PlaygroundSupport
+import CoreGraphics
+import Foundation
 
-let frame = CGRect(x: 0, y: 0, width: 512, height: 768)
-
-let scene = SKScene(size: frame.size)
-scene.backgroundColor = .clear
-scene.scaleMode = .resizeFill
-
-let view = SKView(frame: frame)
-view.showsFPS = true
-view.allowsTransparency = true
-view.presentScene(scene)
-
-let floor = Floor(size: frame.size)
-scene.addChild(floor.node)
-
-let anchor = CGPoint(x: frame.size.width / 2, y: frame.size.height + conveyerWidth)
-let machine = Machine(anchor: anchor, parts: [
+let controller = MachineController(size: CGSize(width: 512, height: 768))
+controller.setAsLiveView()
+controller.addFloor()
+controller.machine = Machine(parts: [
     Conveyor(length: 256, numberOfLanes: 5),
-    Filter(numberOfLanes: 5),
-    Conveyor(length: 64, numberOfLanes: 5),
-    Filter(numberOfLanes: 5),
+    Filter(numberOfLanes: 5, description: "!isScared") { $0.label.text != "😱" },
+    Conveyor(length: 128, numberOfLanes: 5),
+    Filter(numberOfLanes: 5, description: "!isAngry") { $0.label.text != "😡" },
     Conveyor(length: 128, numberOfLanes: 5),
     Destroyer()
 ])
-scene.addChild(machine.node)
 
-PlaygroundPage.current.liveView = view
+let emojis = ["😃", "😡", "😱", "☺️"]
 
 Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
     for lane in 0..<5 {
-        let emoji = arc4random_uniform(2) == 0 ? "😃" : "😡"
-        machine.add(Item(text: emoji), toLane: lane)
+        controller.machine?.add(Item(text: emojis.randomElement), toLane: lane)
     }
 }
