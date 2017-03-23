@@ -14,9 +14,10 @@ extension Machine: Chainable {
     }
 
     public func add(_ item: Item, toLane lane: Int) {
+        item.node.position = node.position + (parts.first?.startPosition(forLane: lane) ?? .zero)
         item.size = CGSize(width: conveyorWidth, height: conveyorWidth)
 
-        node.addChild(item.node)
+        node.scene?.addChild(item.node)
         parts.first?.add(item, toLane: lane)
     }
 }

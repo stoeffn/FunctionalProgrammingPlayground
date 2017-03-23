@@ -9,7 +9,7 @@ extension Filter: Chainable {
         return node.position - CGPoint(x: 0, y: conveyorWidth / 2)
     }
 
-    private func startPosition(forLane lane: Int) -> CGPoint {
+    public func startPosition(forLane lane: Int) -> CGPoint {
         return node.position + CGPoint(x: xPosition(forLane: lane), y: conveyorWidth / 2)
     }
 
@@ -22,8 +22,6 @@ extension Filter: Chainable {
     }
 
     public func add(_ item: Item, toLane lane: Int) {
-        item.node.position = startPosition(forLane: lane)
-
         let isItemIncluded = isIncluded(item)
         let movement = SKAction.move(by: CGVector(dx: 0, dy: -conveyorWidth / 2), duration: movementDuration(forDistance: conveyorWidth / 2))
         let excludeMovement = SKAction.move(by: CGVector(dx: 512, dy: 0), duration: movementDuration(forDistance: 512))

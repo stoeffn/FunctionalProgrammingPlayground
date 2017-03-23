@@ -6,11 +6,12 @@ public class Conveyor {
     public let length: CGFloat
 
     private var panels = [SKSpriteNode]()
+
     public var output: Chainable?
 
     // MARK: - Life Cycle
 
-    public init(length: CGFloat = 128, numberOfLanes: Int = 1) {
+    public init(length: CGFloat = conveyorWidth, numberOfLanes: Int = 1) {
         self.length = length
         self.numberOfLanes = max(numberOfLanes, 1)
 

@@ -4,6 +4,7 @@ public class Machine {
     public let node = SKNode()
 
     public var output: Chainable?
+
     private(set) var parts = [Chainable]()
 
     public init(parts: [Chainable]) {
