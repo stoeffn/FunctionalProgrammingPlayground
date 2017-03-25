@@ -50,7 +50,7 @@ public final class MachineController: UIViewController {
             oldValue?.node.removeFromParent()
 
             if let machine = machine {
-                machine.attach(to: topAnchor)
+                machine.attach(to: topAnchor + CGPoint(x: 0, y: conveyorWidth / 2))
                 scene.addChild(machine.node)
             }
         }

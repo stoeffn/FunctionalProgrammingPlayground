@@ -3,14 +3,14 @@ import SpriteKit
 
 final class Spawner: Composable {
     let node: SKNode = SKNode()
-    let items: [Item?]
 
     weak var input: Chainable?
     var output: Chainable?
+    var items: [Item?]
 
     // MARK: - Life Cycle
 
-    init(items: [Item?]? = nil) {
+    init(items: [Item?]?) {
         self.items = items ?? []
     }
 
@@ -27,12 +27,13 @@ final class Spawner: Composable {
     func trigger() {
         items
             .enumerated()
-            .flatMap { index, item in
-                item?.node.position = node.absolutePosition + CGPoint(x: xPosition(forLane: index), y: 0)
+            .flatMap { lane, item in
+                item?.node.position = absolutePosition(forItemAtLane: lane)
                 return item?.node
             }
             .forEach { node.scene?.addChild($0) }
 
         (output as? Composable)?.process(items)
+        items.removeAll()
     }
 }

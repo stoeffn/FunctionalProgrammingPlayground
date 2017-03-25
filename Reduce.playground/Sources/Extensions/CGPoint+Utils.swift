@@ -1,6 +1,6 @@
 import CoreGraphics
 
-prefix func - (point: CGPoint) -> CGPoint {
+prefix func -(point: CGPoint) -> CGPoint {
     return CGPoint(x: -point.x, y: -point.y)
 }
 
