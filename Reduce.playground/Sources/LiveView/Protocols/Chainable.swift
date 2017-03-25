@@ -3,15 +3,13 @@ import SpriteKit
 protocol Chainable: class {
     var node: SKNode { get }
 
-    func attach(to anchor: CGPoint)
+    weak var input: Chainable? { get set }
+
+    var inputAnchor: CGPoint { get }
 
     var output: Chainable? { get set }
 
     var outputAnchor: CGPoint { get }
-}
 
-extension Chainable {
-    public var outputAnchor: CGPoint {
-        return .zero
-    }
+    func attach(to chainable: Chainable)
 }

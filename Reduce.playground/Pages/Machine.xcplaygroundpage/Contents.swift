@@ -4,10 +4,10 @@ import PlaygroundSupport
 
 let controller = MachineController(size: CGSize(width: 512, height: 768))
 controller.addFloor()
-controller.machine = Machine(numberOfLanes: 3, [
+controller.machine = Machine([
     .dictionary([
         "type": .string("Spawner"),
-        "results": .array([
+        "items": .array([
             .dictionary(["title": .string("😃")]),
             .dictionary(["title": .string("😱")]),
             .dictionary(["title": .string("☺️")])
@@ -20,7 +20,7 @@ controller.machine = Machine(numberOfLanes: 3, [
     .dictionary([
         "type": .string("Filter"),
         "description": .string("!isScared"),
-        "results": .array([
+        "items": .array([
             .dictionary(["title": .string("😃")]),
             .dictionary([:]),
             .dictionary(["title": .string("☺️")])
@@ -32,7 +32,7 @@ controller.machine = Machine(numberOfLanes: 3, [
     .dictionary([
         "type": .string("Map"),
         "description": .string("box"),
-        "results": .array([
+        "items": .array([
             .dictionary(["title": .string("📦")]),
             .dictionary([:]),
             .dictionary(["title": .string("📦")])
@@ -44,7 +44,7 @@ controller.machine = Machine(numberOfLanes: 3, [
     .dictionary([
         "type": .string("Reduce"),
         "description": .string("pack"),
-        "results": .array([
+        "items": .array([
             .dictionary(["title": .string("🚚")])
         ])
     ]),
@@ -55,8 +55,6 @@ controller.machine = Machine(numberOfLanes: 3, [
         "type": .string("Destroyer")
     ])
 ])
-controller.machine?.activate()
+controller.machine?.trigger()
 
 PlaygroundPage.current.liveView = controller
-
-//: [Next](@next)

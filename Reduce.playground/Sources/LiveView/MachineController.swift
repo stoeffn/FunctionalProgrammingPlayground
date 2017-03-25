@@ -1,7 +1,7 @@
 import SpriteKit
 import UIKit
 
-public class MachineController: UIViewController {
+public final class MachineController: UIViewController {
     // MARK: - Life Cycle
 
     override public func viewDidLoad() {

@@ -1,21 +1,13 @@
 import CoreGraphics
 import Foundation
 
-protocol Component: Chainable {
-    init(numberOfLanes: Int?, _ configuration: [String: PlaygroundValue])
-
-    func activate()
-
-    var numberOfLanes: Int { get }
-}
-
-extension Component {
-    func xPosition(forLane lane: Int) -> CGFloat {
-        return CGFloat(lane - numberOfLanes / 2) * conveyorWidth
+extension Composable {
+    var numberOfLanes: Int {
+        return items.count
     }
 
-    public func startPosition(forLane lane: Int) -> CGPoint {
-        return CGPoint(x: xPosition(forLane: lane), y: 0)
+    func xPosition(forLane lane: Int) -> CGFloat {
+        return CGFloat(lane - numberOfLanes / 2) * conveyorWidth
     }
 
     func movementDuration(forDistance distance: CGFloat) -> TimeInterval {
@@ -23,8 +15,10 @@ extension Component {
     }
 }
 
-func component(forType type: String) -> Component.Type? {
+func component(forType type: String) -> Composable.Type? {
     switch type.lowercased() {
+    case "spawner":
+        return Spawner.self
     case "conveyor":
         return Conveyor.self
     default:
