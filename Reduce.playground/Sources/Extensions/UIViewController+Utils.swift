@@ -1,4 +1,3 @@
-import PlaygroundSupport
 import UIKit
 
 public extension UIViewController {
@@ -11,9 +10,5 @@ public extension UIViewController {
 
         preferredContentSize = size
         view.frame = frame
-    }
-
-    public func setAsLiveView() {
-        PlaygroundPage.current.liveView = view
     }
 }

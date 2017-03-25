@@ -11,6 +11,10 @@ public class Machine {
         parts.forEach(add)
     }
 
+    public init(numberOfLanes: Int = 1 , _ rawParts: [Any]) {
+
+    }
+
     public func add(_ part: Chainable) {
         part.attach(to: parts.last?.outputAnchor ?? node.position)
 

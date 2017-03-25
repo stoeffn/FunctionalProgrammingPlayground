@@ -1,5 +1,0 @@
-import PlaygroundSupport
-
-protocol ChainableProxy {
-
-}
