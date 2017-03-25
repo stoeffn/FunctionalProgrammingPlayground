@@ -1,19 +1,18 @@
+import PlaygroundSupport
 import SpriteKit
 
-public class Conveyor {
-    public let node: SKNode = SKCropNode()
-    public let numberOfLanes: Int
-    public let length: CGFloat
+final class Conveyor: Component {
+    let node: SKNode = SKCropNode()
+    let numberOfLanes: Int
+    let length: CGFloat
 
-    private var panels = [SKSpriteNode]()
-
-    public var output: Chainable?
+    var output: Chainable?
 
     // MARK: - Life Cycle
 
-    public init(length: CGFloat = conveyorWidth, numberOfLanes: Int = 1) {
-        self.length = length
-        self.numberOfLanes = max(numberOfLanes, 1)
+    init(numberOfLanes: Int? = nil, length: CGFloat? = nil) {
+        self.numberOfLanes = max(numberOfLanes ?? 1, 1)
+        self.length = length ?? conveyorWidth
 
         if let node = node as? SKCropNode {
             node.maskNode = SKSpriteNode(texture: nil, color: .black, size: size)
@@ -21,6 +20,18 @@ public class Conveyor {
 
         setupPanels()
         setupBorder()
+    }
+
+    convenience init(numberOfLanes: Int? = nil, _ configuration: [String: PlaygroundValue]) {
+        self.init(
+            numberOfLanes: numberOfLanes,
+            length: configuration["length"]?.cgFloat)
+    }
+
+    // MARK: - Component
+
+    func activate() {
+
     }
 
     // MARK: - Textures

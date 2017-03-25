@@ -1,25 +1,46 @@
 import SpriteKit
 
-public class Machine {
+public final class Machine: Component {
     public let node = SKNode()
 
-    public var output: Chainable?
+    var output: Chainable?
 
-    private(set) var parts = [Chainable]()
+    private(set) var components = [Component]()
 
-    public init(parts: [Chainable]) {
-        parts.forEach(add)
+    // MARK: - Life Cycle
+
+    init(components: [Component]) {
+        components.forEach(add)
     }
 
-    public init(numberOfLanes: Int = 1 , _ rawParts: [Any]) {
-
+    public convenience init(numberOfLanes: Int? = 1, _ configuration: [String: PlaygroundValue]) {
+        let componentConfigurations = configuration["components"]?
+            .array?
+            .flatMap { $0.dictionary }
+        let types = componentConfigurations?
+            .map { component(forType: $0["type"]?.string ?? "") }
+        let components = zip(types ?? [], componentConfigurations ?? [])
+            .flatMap { $0?.init(numberOfLanes: 1, $1) }
+        self.init(components: components)
     }
 
-    public func add(_ part: Chainable) {
-        part.attach(to: parts.last?.outputAnchor ?? node.position)
+    public convenience init(numberOfLanes: Int? = 1, _ components: [PlaygroundValue]) {
+        self.init(numberOfLanes: numberOfLanes, ["components": .array(components)])
+    }
 
-        parts.last?.output = part
-        parts.append(part)
-        node.addChild(part.node)
+    // MARK: - Component
+
+    public func activate() {
+        components.first?.activate()
+    }
+
+    // MARK: - Helper Methods
+
+    private func add(_ component: Component) {
+        component.attach(to: components.last?.outputAnchor ?? node.position)
+
+        components.last?.output = component
+        components.append(component)
+        node.addChild(component.node)
     }
 }

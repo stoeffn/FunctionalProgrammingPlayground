@@ -13,10 +13,10 @@ extension Conveyor: Chainable {
         return node.position + CGPoint(x: xPosition(forLane: lane), y: length / 2)
     }
 
-    public func add(_ item: Item, toLane lane: Int) {
+    /**public func add(_ item: Item, toLane lane: Int) {
         let movement = SKAction.move(by: CGVector(dx: 0, dy: -length), duration: movementDuration(forDistance: length))
         item.node.run(movement) {
             self.output?.add(item, toLane: lane)
         }
-    }
+    }*/
 }
