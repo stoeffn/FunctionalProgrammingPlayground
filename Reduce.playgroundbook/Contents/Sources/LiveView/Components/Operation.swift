@@ -152,8 +152,7 @@ final class Operation: Composable {
     // MARK: - Helper Methods
 
     var size: CGSize {
-        let numberOfLanes = (input as? Composable)?.numberOfLanes ?? 1
-        return CGSize(width: conveyorWidth * CGFloat(numberOfLanes), height: conveyorWidth)
+        return CGSize(width: conveyorWidth * CGFloat(numberOfInputLanes), height: conveyorWidth)
     }
 
     private func addIndicators() {

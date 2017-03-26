@@ -37,8 +37,8 @@ public final class Machine: Composable {
 
     // MARK: - Chainable
 
-    var numberOfLanes: Int {
-        return firstComponent?.numberOfLanes ?? 1
+    var numberOfInputLanes: Int {
+        return firstComponent?.numberOfLanes ?? 0
     }
 
     var outputAnchor: CGPoint {

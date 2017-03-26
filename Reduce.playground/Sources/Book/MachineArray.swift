@@ -18,13 +18,10 @@ public struct MachineArray<Element> where Element: ItemConvertible {
         return items[position]!
     }
 
-    /*public func filter(_ isIncluded: @escaping (Element) throws -> Bool) rethrows -> MachineArray<Element> {
-        let result = items.map { item -> (Element) in
-            guard try isIncluded(item) else { return Element() }
-            return item
-        }
+    public func filter(_ isIncluded: @escaping (Element) throws -> Bool) rethrows -> MachineArray<Element> {
+        let result = try items.filterPairs { try isIncluded($1) }
         return MachineArray(result, configuration: configuration + MachineArray.configuration(for: result, method: .filter))
-    }*/
+    }
 
     /*public func map<T: ItemConvertible>(_ transform: (Element) throws -> T) rethrows -> MachineArray<T> {
         let result = try items.map(transform)
@@ -43,7 +40,7 @@ public struct MachineArray<Element> where Element: ItemConvertible {
     }
 
     private static func configuration(for items: [Int: ItemConvertible], method: Operation.Method) -> [PlaygroundValue] {
-        let operation = Operation.configuration(forItems: items, method: .filter)
+        let operation = Operation.configuration(forItems: items, method: method)
         let conveyor = Conveyor.configuration()
         return [operation, conveyor]
     }

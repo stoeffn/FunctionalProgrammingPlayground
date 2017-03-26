@@ -37,7 +37,8 @@ final class Conveyor: Composable {
     func updateAppearance() {
         node.removeAllChildren()
 
-        (node as? SKCropNode)?.maskNode = SKSpriteNode(texture: nil, color: .black, size: size)
+        let cropNode = node as? SKCropNode
+        cropNode?.maskNode = SKSpriteNode(texture: nil, color: .black, size: size)
         setupPanels()
         setupBorder()
     }

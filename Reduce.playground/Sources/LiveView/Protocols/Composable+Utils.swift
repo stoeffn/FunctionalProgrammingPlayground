@@ -6,16 +6,13 @@ extension Composable {
         return String(describing: Self.self)
     }
 
-    var numberOfLanes: Int {
-        return (items.keys.max() ?? 1) + 1
+    func xPosition(forLane lane: Int, numberOfLanes: Int? = nil) -> CGFloat {
+        let numberOfLanes = numberOfLanes ?? numberOfInputLanes
+        return (CGFloat(lane) - CGFloat(numberOfLanes - 1) / 2) * conveyorWidth
     }
 
-    func xPosition(forLane lane: Int) -> CGFloat {
-        return CGFloat(lane - numberOfLanes / 2) * conveyorWidth
-    }
-
-    func absolutePosition(forItemAtLane lane: Int, replacingItem oldItem: Item? = nil) -> CGPoint {
-        return CGPoint(x: node.absolutePosition.x + xPosition(forLane: lane),
+    func absolutePosition(forItemAtLane lane: Int, replacingItem oldItem: Item? = nil, numberOfLanes: Int? = nil) -> CGPoint {
+        return CGPoint(x: node.absolutePosition.x + xPosition(forLane: lane, numberOfLanes: numberOfLanes),
                        y: oldItem?.node.absolutePosition.y ?? node.absolutePosition.y)
     }
 

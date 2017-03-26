@@ -4,7 +4,8 @@ extension Composable {
     func trigger() { }
 
     var items: [Item?] {
-        return (input as? Composable)?.items ?? []
+        let inputComponent = input as? Composable
+        return inputComponent?.items ?? []
     }
 
     func process(_ items: [Item?]) { }

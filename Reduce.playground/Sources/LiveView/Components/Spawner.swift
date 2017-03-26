@@ -6,12 +6,14 @@ final class Spawner: Composable {
 
     weak var input: Chainable?
     var output: Chainable?
+    var numberOfInputLanes: Int
     var items: [Int: Item]
 
     // MARK: - Life Cycle
 
     init(items: [Int: Item]?) {
         self.items = items ?? [:]
+        self.numberOfInputLanes = (items?.keys.max() ?? 0) + 1
     }
 
     convenience init(_ configuration: [String: PlaygroundValue]) {
@@ -38,7 +40,8 @@ final class Spawner: Composable {
             }
             .forEach { node.scene?.addChild($0) }
 
-        (output as? Composable)?.process(items)
+        let outputComponent = output as? Composable
+        outputComponent?.process(items)
         items.removeAll()
     }
 

@@ -10,7 +10,8 @@ controller.machine = Machine([
         "items": .dictionary([
             "0": .dictionary(["title": .string("😃")]),
             "1": .dictionary(["title": .string("😱")]),
-            "2": .dictionary(["title": .string("☺️")])
+            "2": .dictionary(["title": .string("☺️")]),
+            "3": .dictionary(["title": .string("😱")])
         ])
     ]),
     .dictionary([

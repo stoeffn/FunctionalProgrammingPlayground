@@ -35,10 +35,18 @@ public final class Machine: Composable {
         self.init(["components": .array(components)])
     }
 
+    public convenience init<Element: ItemConvertible>(_ machineArray: MachineArray<Element>) {
+        self.init(machineArray.configuration + [Destroyer.configuration])
+    }
+
     // MARK: - Chainable
 
-    var numberOfLanes: Int {
-        return firstComponent?.numberOfLanes ?? 1
+    var numberOfInputLanes: Int {
+        return firstComponent?.numberOfInputLanes ?? 0
+    }
+
+    var numberOfOutputLanes: Int {
+        return lastComponent?.numberOfInputLanes ?? 0
     }
 
     var outputAnchor: CGPoint {

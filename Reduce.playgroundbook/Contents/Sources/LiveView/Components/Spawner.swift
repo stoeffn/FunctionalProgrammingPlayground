@@ -33,7 +33,8 @@ final class Spawner: Composable {
             }
             .forEach { node.scene?.addChild($0) }
 
-        (output as? Composable)?.process(items)
+        let outputComponent = output as? Composable
+        outputComponent?.process(items)
         items.removeAll()
     }
 }

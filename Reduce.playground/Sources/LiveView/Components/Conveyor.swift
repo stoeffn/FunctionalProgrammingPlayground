@@ -46,7 +46,8 @@ final class Conveyor: Composable {
     func updateAppearance() {
         node.removeAllChildren()
 
-        (node as? SKCropNode)?.maskNode = SKSpriteNode(texture: nil, color: .black, size: size)
+        let cropNode = node as? SKCropNode
+        cropNode?.maskNode = SKSpriteNode(texture: nil, color: .black, size: size)
         setupPanels()
         setupBorder()
     }
@@ -56,8 +57,9 @@ final class Conveyor: Composable {
         let movement = SKAction.move(by: CGVector(dx: 0, dy: -length), duration: duration)
         items.values.forEach { $0.node.run(movement) }
 
-        Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { _ in 
-            (self.output as? Composable)?.process(items)
+        Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { _ in
+            let outputComponent = self.output as? Composable
+            outputComponent?.process(items)
         }
     }
 
@@ -70,6 +72,6 @@ final class Conveyor: Composable {
     // MARK: - Helpers
 
     var size: CGSize {
-        return CGSize(width: conveyorWidth * CGFloat(numberOfLanes) + borderWidth * 2, height: length)
+        return CGSize(width: conveyorWidth * CGFloat(numberOfInputLanes) + borderWidth * 2, height: length)
     }
 }

@@ -52,6 +52,10 @@ final class Operation: Composable {
 
     // MARK: - Component
 
+    var numberOfOutputLanes: Int {
+        return method == .reduce ? 1 : numberOfInputLanes
+    }
+
     func updateAppearance() {
         node.removeAllChildren()
 
@@ -68,13 +72,20 @@ final class Operation: Composable {
 
     func process(_ items: [Int: Item]) {
         items.forEach(processItem)
+
+        let duration = movementDuration(forDistance: size.height)
+        Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { _ in
+            let outputComponent = self.output as? Composable
+            outputComponent?.process(self.items)
+            self.items.removeAll()
+        }
     }
 
     private func processItem(inLane lane: Int, _ oldItem: Item?) {
         guard let oldItem = oldItem else { return }
 
-        let duration = movementDuration(forDistance: size.height)
-        let movement = SKAction.move(by: CGVector(dx: 0, dy: -size.height / 2), duration: duration / 2)
+        let duration = movementDuration(forDistance: size.height / 2)
+        let movement = SKAction.move(by: CGVector(dx: 0, dy: -size.height / 2), duration: duration)
         let hasItemChanged = items[lane] ?? nil != oldItem
         let shouldAnimateRemoval = method == .filter && hasItemChanged
 
@@ -86,28 +97,29 @@ final class Operation: Composable {
             guard let newItem = self.replacingItem(atLane: lane, oldItem, animated: shouldAnimateRemoval) else { return }
             newItem.node.run(movement)
         }
-
-        Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { _ in
-            (self.output as? Composable)?.process(self.items)
-            self.items.removeAll()
-        }
     }
 
     private func replacingItem(atLane lane: Int, _ oldItem: Item, animated: Bool) -> Item? {
-        defer { remove(oldItem, animated: animated) }
+        defer { removeItem(atLane: lane, oldItem, animated: animated) }
         guard let newItem = items[lane] ?? nil else { return nil }
 
-        newItem.node.position = absolutePosition(forItemAtLane: lane, replacingItem: oldItem)
+        newItem.node.position = absolutePosition(forItemAtLane: lane, replacingItem: oldItem, numberOfLanes: numberOfOutputLanes)
         oldItem.node.scene?.addChild(newItem.node)
         return newItem
     }
 
-    private func remove(_ item: Item, animated: Bool) {
-        let distance = size.width / 2 + item.node.position.x + removalConveyorLength
-        let duration = animated ? movementDuration(forDistance: distance) : 0
-        let movement = SKAction.move(by: CGVector(dx: 512, dy: 0), duration: duration)
+    private func removeItem(atLane lane: Int, _ item: Item, animated: Bool) {
+        guard animated else {
+            item.node.removeFromParent()
+            return
+        }
 
-        item.node.run(movement) {
+        let duration = movementDuration(forDistance: removalConveyorLength)
+        let delay = SKAction.wait(forDuration: Double(numberOfInputLanes - lane) / 2)
+        let movement = SKAction.move(by: CGVector(dx: removalConveyorLength, dy: 0), duration: duration)
+
+        item.node.position = absolutePosition(forItemAtLane: numberOfInputLanes - 1)
+        item.node.run(.sequence([delay, movement])) {
             item.node.removeFromParent()
         }
     }
@@ -160,7 +172,7 @@ final class Operation: Composable {
     }
 
     private lazy var indicators: [SKSpriteNode] = {
-        return Array(0..<self.numberOfLanes)
+        return Array(0..<self.numberOfInputLanes)
             .map { self.indicator(forLane: $0) }
     }()
 
@@ -177,7 +189,6 @@ final class Operation: Composable {
     // MARK: - Helper Methods
 
     var size: CGSize {
-        let numberOfLanes = (input as? Composable)?.numberOfLanes ?? 1
-        return CGSize(width: conveyorWidth * CGFloat(numberOfLanes), height: conveyorWidth)
+        return CGSize(width: conveyorWidth * CGFloat(numberOfInputLanes), height: conveyorWidth)
     }
 }

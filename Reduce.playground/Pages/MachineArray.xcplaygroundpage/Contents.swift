@@ -18,9 +18,9 @@ let 🍏: Ingredient = "🍏"
 let 🍎: Ingredient = "🍎"
 
 let test = MachineArray(🍏, 🍎)
-//    .filter { $0 == 🍎 }
+    .filter { $0 == 🍎 }
 
-controller.machine = Machine(test.configuration)
+controller.machine = Machine(test)
 controller.machine?.trigger()
 
 PlaygroundPage.current.liveView = controller
