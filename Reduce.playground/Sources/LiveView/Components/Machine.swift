@@ -55,6 +55,10 @@ public final class Machine: Composable {
         firstComponent?.trigger()
     }
 
+    func process(_ items: [Int : Item]) {
+        firstComponent?.process(items)
+    }
+
     // MARK: - Helpers
 
     private func addComponent(toPrevious previousComponent: Composable, _ component: Composable) -> Composable {

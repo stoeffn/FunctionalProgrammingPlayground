@@ -1,5 +1,13 @@
 import Foundation
 
+public extension Collection {
+    public var indexedDictionary: [Int: Iterator.Element] {
+        var result: [Int: Iterator.Element] = [:]
+        enumerated().forEach { result[$0.offset] = $0.element }
+        return result
+    }
+}
+
 public extension Collection where Indices.Iterator.Element == Index {
     /// Returns the element at the specified index iff it is within bounds, otherwise nil.
     public subscript (safe index: Index) -> Generator.Element? {

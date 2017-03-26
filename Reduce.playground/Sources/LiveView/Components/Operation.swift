@@ -14,24 +14,30 @@ final class Operation: Composable {
 
     weak var input: Chainable?
     var output: Chainable?
-    var items: [Item?]
+    var items: [Int: Item]
 
     // MARK: - Life Cycle
 
-    init(method: Method?, items: [Item?]?, description: String? = nil) {
+    init(method: Method?, items: [Int: Item]?, description: String? = nil) {
         self.method = method ?? .none
-        self.items = items ?? []
+        self.items = items ?? [:]
         self.description = description ?? ""
     }
 
     convenience init(_ configuration: [String: PlaygroundValue]) {
         let method = Method(rawValue: configuration["type"]?.string?.lowercased() ?? "")
-        let items = configuration["items"]?
-            .array?
-            .flatMap { $0.dictionary }
-            .map { Item($0) }
+        let items = Item.multipleFrom(configuration: configuration["items"]?.dictionary)
         let description = configuration["description"]?.string
         self.init(method: method, items: items, description: description)
+    }
+
+    // MARK: - Configuration
+
+    static func configuration(forItems items: [Int: ItemConvertible], method: Method) -> PlaygroundValue {
+        return .dictionary([
+            "type": .string(method.rawValue),
+            "items": .dictionary(items.mapPairs { (String($0), $1.configuration) })
+        ])
     }
 
     // MARK: - Chainable
@@ -60,10 +66,8 @@ final class Operation: Composable {
         }
     }
 
-    func process(_ items: [Item?]) {
-        items
-            .enumerated()
-            .forEach(processItem)
+    func process(_ items: [Int: Item]) {
+        items.forEach(processItem)
     }
 
     private func processItem(inLane lane: Int, _ oldItem: Item?) {
@@ -71,7 +75,7 @@ final class Operation: Composable {
 
         let duration = movementDuration(forDistance: size.height)
         let movement = SKAction.move(by: CGVector(dx: 0, dy: -size.height / 2), duration: duration / 2)
-        let hasItemChanged = items[safe: lane] ?? nil != oldItem
+        let hasItemChanged = items[lane] ?? nil != oldItem
         let shouldAnimateRemoval = method == .filter && hasItemChanged
 
         if method == .filter {
@@ -91,7 +95,7 @@ final class Operation: Composable {
 
     private func replacingItem(atLane lane: Int, _ oldItem: Item, animated: Bool) -> Item? {
         defer { remove(oldItem, animated: animated) }
-        guard let newItem = items[safe: lane] ?? nil else { return nil }
+        guard let newItem = items[lane] ?? nil else { return nil }
 
         newItem.node.position = absolutePosition(forItemAtLane: lane, replacingItem: oldItem)
         oldItem.node.scene?.addChild(newItem.node)
@@ -99,7 +103,7 @@ final class Operation: Composable {
     }
 
     private func remove(_ item: Item, animated: Bool) {
-        let distance = item.node.position.x + removalConveyorLength
+        let distance = size.width / 2 + item.node.position.x + removalConveyorLength
         let duration = animated ? movementDuration(forDistance: distance) : 0
         let movement = SKAction.move(by: CGVector(dx: 512, dy: 0), duration: duration)
 
@@ -136,7 +140,7 @@ final class Operation: Composable {
         return label
     }()
 
-    private lazy var removalSpawner = Spawner(items: [nil])
+    private lazy var removalSpawner = Spawner.dummy()
 
     private lazy var removalConveyor: Conveyor = {
         let conveyor = Conveyor(length: 256)

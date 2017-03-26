@@ -7,10 +7,10 @@ controller.addFloor()
 controller.machine = Machine([
     .dictionary([
         "type": .string("Spawner"),
-        "items": .array([
-            .dictionary(["title": .string("😃")]),
-            .dictionary(["title": .string("😱")]),
-            .dictionary(["title": .string("☺️")])
+        "items": .dictionary([
+            "0": .dictionary(["title": .string("😃")]),
+            "1": .dictionary(["title": .string("😱")]),
+            "2": .dictionary(["title": .string("☺️")])
         ])
     ]),
     .dictionary([
@@ -20,10 +20,9 @@ controller.machine = Machine([
     .dictionary([
         "type": .string("Filter"),
         "description": .string("!isScared"),
-        "items": .array([
-            .dictionary(["title": .string("😃")]),
-            .dictionary([:]),
-            .dictionary(["title": .string("☺️")])
+        "items": .dictionary([
+            "0": .dictionary(["title": .string("😃")]),
+            "2": .dictionary(["title": .string("☺️")])
         ])
     ]),
     .dictionary([
@@ -32,10 +31,9 @@ controller.machine = Machine([
     .dictionary([
         "type": .string("Map"),
         "description": .string("box"),
-        "items": .array([
-            .dictionary(["title": .string("📦")]),
-            .dictionary([:]),
-            .dictionary(["title": .string("📦")])
+        "items": .dictionary([
+            "0": .dictionary(["title": .string("📦")]),
+            "2": .dictionary(["title": .string("📦")])
         ])
     ]),
     .dictionary([
@@ -44,8 +42,8 @@ controller.machine = Machine([
     .dictionary([
         "type": .string("Reduce"),
         "description": .string("pack"),
-        "items": .array([
-            .dictionary(["title": .string("🚚")])
+        "items": .dictionary([
+            "0": .dictionary(["title": .string("🚚")])
         ])
     ]),
     .dictionary([

@@ -2,8 +2,12 @@ import CoreGraphics
 import Foundation
 
 extension Composable {
+    static var typeName: String {
+        return String(describing: Self.self)
+    }
+
     var numberOfLanes: Int {
-        return items.count
+        return (items.keys.max() ?? 1) + 1
     }
 
     func xPosition(forLane lane: Int) -> CGFloat {

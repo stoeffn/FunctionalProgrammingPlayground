@@ -3,9 +3,9 @@ extension Composable {
 
     func trigger() { }
 
-    var items: [Item?] {
-        return (input as? Composable)?.items ?? []
+    var items: [Int: Item] {
+        return (input as? Composable)?.items ?? [:]
     }
 
-    func process(_ items: [Item?]) { }
+    func process(_ items: [Int: Item]) { }
 }
