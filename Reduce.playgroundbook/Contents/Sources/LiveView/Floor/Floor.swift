@@ -1,7 +1,7 @@
 import SpriteKit
 
-public class Floor {
-    public let node = SKNode()
+final class Floor {
+    let node = SKNode()
     let size: CGSize
 
     // MARK: - Life Cycle
@@ -14,5 +14,5 @@ public class Floor {
 
     // MARK: - Textures
 
-    let tileTexture = SKTexture(imageNamed: "FloorTile")
+    let tileTexture = SKTexture(image: #imageLiteral(resourceName: "FloorTile.png"))
 }

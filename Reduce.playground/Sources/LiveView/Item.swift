@@ -1,3 +1,4 @@
+import PlaygroundSupport
 import SpriteKit
 
 final class Item {

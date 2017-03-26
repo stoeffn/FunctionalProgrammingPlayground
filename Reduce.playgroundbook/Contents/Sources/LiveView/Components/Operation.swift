@@ -10,11 +10,10 @@ final class Operation: Composable {
     let method: Method
     let description: String
 
-    private let removalConveyorLength: CGFloat = 512
-
     weak var input: Chainable?
     var output: Chainable?
     var items: [Item?]
+    var indicators = [SKSpriteNode]()
 
     // MARK: - Life Cycle
 
@@ -52,11 +51,11 @@ final class Operation: Composable {
         labelNode.text = ".\(method)(\(description))"
 
         node.addChild(casingNode)
+        node.addChild(exclusionConveyor.node)
         node.addChild(labelNode)
 
         if method == .filter {
-            node.addChild(removalConveyor.node)
-            indicators.forEach { node.addChild($0) }
+            addIndicators()
         }
     }
 
@@ -71,15 +70,14 @@ final class Operation: Composable {
 
         let duration = movementDuration(forDistance: size.height)
         let movement = SKAction.move(by: CGVector(dx: 0, dy: -size.height / 2), duration: duration / 2)
-        let hasItemChanged = items[safe: lane] ?? nil != oldItem
-        let shouldAnimateRemoval = method == .filter && hasItemChanged
+        let isItemUnchanged = items[safe: lane] ?? nil == oldItem
 
         if method == .filter {
-            indicators[lane].run(pulseAction(for: hasItemChanged ? redIndicator : greenIndicator))
+            indicators[lane].run(pulseAction(for: isItemUnchanged ? greenIndicator : redIndicator))
         }
 
         oldItem.node.run(movement) {
-            guard let newItem = self.replacingItem(atLane: lane, oldItem, animated: shouldAnimateRemoval) else { return }
+            guard let newItem = self.replacingItem(atLane: lane, oldItem) else { return }
             newItem.node.run(movement)
         }
 
@@ -89,23 +87,13 @@ final class Operation: Composable {
         }
     }
 
-    private func replacingItem(atLane lane: Int, _ oldItem: Item, animated: Bool) -> Item? {
-        defer { remove(oldItem, animated: animated) }
+    private func replacingItem(atLane lane: Int, _ oldItem: Item) -> Item? {
+        defer { oldItem.node.removeFromParent() }
         guard let newItem = items[safe: lane] ?? nil else { return nil }
 
         newItem.node.position = absolutePosition(forItemAtLane: lane, replacingItem: oldItem)
         oldItem.node.scene?.addChild(newItem.node)
         return newItem
-    }
-
-    private func remove(_ item: Item, animated: Bool) {
-        let distance = item.node.position.x + removalConveyorLength
-        let duration = animated ? movementDuration(forDistance: distance) : 0
-        let movement = SKAction.move(by: CGVector(dx: 512, dy: 0), duration: duration)
-
-        item.node.run(movement) {
-            item.node.removeFromParent()
-        }
     }
 
     // MARK: - Textures
@@ -136,14 +124,10 @@ final class Operation: Composable {
         return label
     }()
 
-    private lazy var removalSpawner = Spawner(items: [nil])
-
-    private lazy var removalConveyor: Conveyor = {
+    private lazy var exclusionConveyor: Conveyor = {
         let conveyor = Conveyor(length: 256)
-        conveyor.input = self.removalSpawner
         conveyor.node.position = CGPoint(x: self.size.width / 2 + 128, y: 0)
         conveyor.node.zRotation = .pi / 2
-        conveyor.updateAppearance()
         return conveyor
     }()
 
@@ -154,11 +138,6 @@ final class Operation: Composable {
         indicator.alpha = 0.9
         return indicator
     }
-
-    private lazy var indicators: [SKSpriteNode] = {
-        return Array(0..<self.numberOfLanes)
-            .map { self.indicator(forLane: $0) }
-    }()
 
     // MARK: - Actions
 
@@ -175,5 +154,13 @@ final class Operation: Composable {
     var size: CGSize {
         let numberOfLanes = (input as? Composable)?.numberOfLanes ?? 1
         return CGSize(width: conveyorWidth * CGFloat(numberOfLanes), height: conveyorWidth)
+    }
+
+    private func addIndicators() {
+        for lane in 0..<numberOfLanes {
+            let indicator = self.indicator(forLane: lane)
+            indicators.append(indicator)
+            node.addChild(indicator)
+        }
     }
 }

@@ -1,19 +1,30 @@
+import PlaygroundSupport
 import SpriteKit
 
-public class Item {
+final class Item {
     let node = SKNode()
 
-    public lazy var label = SKLabelNode()
+    // MARK: - Life Cycle
 
-    public init(text: String) {
-        label.text = text
+    init(title: String) {
+        label.text = title
+        label.fontSize = size.height * 0.6
+        label.verticalAlignmentMode = .center
         node.addChild(label)
     }
 
-    var size: CGSize = .zero {
-        didSet {
-            label.fontSize = size.height * 0.6
-            label.verticalAlignmentMode = .center
-        }
+    convenience init?(_ configuration: [String: PlaygroundValue]) {
+        guard let title = configuration["title"]?.string else { return nil }
+        self.init(title: title)
+    }
+
+    // MARK: - Nodes
+
+    lazy var label = SKLabelNode()
+
+    // MARK: - Helpers
+
+    var size: CGSize {
+        return CGSize(width: conveyorWidth, height: conveyorWidth)
     }
 }

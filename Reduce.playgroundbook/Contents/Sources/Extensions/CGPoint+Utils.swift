@@ -1,5 +1,9 @@
 import CoreGraphics
 
+prefix func -(point: CGPoint) -> CGPoint {
+    return CGPoint(x: -point.x, y: -point.y)
+}
+
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
 }

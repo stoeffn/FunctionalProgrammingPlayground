@@ -1,7 +1,7 @@
 import SpriteKit
 import UIKit
 
-public class MachineController: UIViewController {
+public final class MachineController: UIViewController {
     // MARK: - Life Cycle
 
     override public func viewDidLoad() {
@@ -50,7 +50,7 @@ public class MachineController: UIViewController {
             oldValue?.node.removeFromParent()
 
             if let machine = machine {
-                machine.attach(to: topAnchor)
+                machine.attach(to: topAnchor + CGPoint(x: 0, y: conveyorWidth / 2))
                 scene.addChild(machine.node)
             }
         }
