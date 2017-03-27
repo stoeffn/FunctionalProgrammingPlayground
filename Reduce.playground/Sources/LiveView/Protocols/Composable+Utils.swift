@@ -17,7 +17,7 @@ extension Composable {
     }
 
     func movementDuration(forDistance distance: CGFloat) -> TimeInterval {
-        return abs(Double(distance) / 72)
+        return abs(Double(distance) / 84)
     }
 }
 

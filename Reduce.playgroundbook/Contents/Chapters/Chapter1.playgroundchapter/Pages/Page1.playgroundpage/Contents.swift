@@ -6,23 +6,23 @@ let proxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 let configuration: [PlaygroundValue] = [
     .dictionary([
         "type": .string("Spawner"),
-        "items": .array([
-            .dictionary(["title": .string("😃")]),
-            .dictionary(["title": .string("😱")]),
-            .dictionary(["title": .string("☺️")])
+        "items": .dictionary([
+            "0": .dictionary(["title": .string("😃")]),
+            "1": .dictionary(["title": .string("😱")]),
+            "2": .dictionary(["title": .string("☺️")]),
+            "3": .dictionary(["title": .string("😱")])
         ])
     ]),
     .dictionary([
         "type": .string("Conveyor"),
-        "length": .floatingPoint(128)
+        "length": .floatingPoint(192)
     ]),
     .dictionary([
         "type": .string("Filter"),
         "description": .string("!isScared"),
-        "items": .array([
-            .dictionary(["title": .string("😃")]),
-            .dictionary([:]),
-            .dictionary(["title": .string("☺️")])
+        "items": .dictionary([
+            "0": .dictionary(["title": .string("😃")]),
+            "2": .dictionary(["title": .string("☺️")])
         ])
     ]),
     .dictionary([
@@ -31,10 +31,9 @@ let configuration: [PlaygroundValue] = [
     .dictionary([
         "type": .string("Map"),
         "description": .string("box"),
-        "items": .array([
-            .dictionary(["title": .string("📦")]),
-            .dictionary([:]),
-            .dictionary(["title": .string("📦")])
+        "items": .dictionary([
+            "0": .dictionary(["title": .string("📦")]),
+            "2": .dictionary(["title": .string("📦")])
         ])
     ]),
     .dictionary([
@@ -43,8 +42,8 @@ let configuration: [PlaygroundValue] = [
     .dictionary([
         "type": .string("Reduce"),
         "description": .string("pack"),
-        "items": .array([
-            .dictionary(["title": .string("🚚")])
+        "items": .dictionary([
+            "0": .dictionary(["title": .string("🚚")])
         ])
     ]),
     .dictionary([

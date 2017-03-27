@@ -3,7 +3,15 @@ import SpriteKit
 
 final class Operation: Composable {
     enum Method: String {
-        case none, filter, map, reduce
+        case filter, map, reduce
+
+        var casingTexture: SKTexture {
+            switch self {
+            case .filter: return filterCasingTexture
+            case .map: return mapCasingTexture
+            case .reduce: return reduceCasingTexture
+            }
+        }
     }
 
     let node: SKNode = SKCropNode()
@@ -18,13 +26,14 @@ final class Operation: Composable {
 
     // MARK: - Life Cycle
 
-    init(method: Method?, items: [Int: Item]?, description: String? = nil) {
-        self.method = method ?? .none
+    init?(method: Method?, items: [Int: Item]?, description: String? = nil) {
+        guard let method = method else { return nil }
+        self.method = method
         self.items = items ?? [:]
         self.description = description ?? ""
     }
 
-    convenience init(_ configuration: [String: PlaygroundValue]) {
+    convenience init?(_ configuration: [String: PlaygroundValue]) {
         let method = Method(rawValue: configuration["type"]?.string?.lowercased() ?? "")
         let items = Item.multipleFrom(configuration: configuration["items"]?.dictionary)
         let description = configuration["description"]?.string
@@ -42,12 +51,8 @@ final class Operation: Composable {
 
     // MARK: - Chainable
 
-    var inputAnchor: CGPoint {
-        return CGPoint(x: 0, y: conveyorWidth / 2)
-    }
-
-    var outputAnchor: CGPoint {
-        return -CGPoint(x: 0, y: conveyorWidth / 2)
+    var size: CGSize {
+        return CGSize(width: conveyorWidth * CGFloat(numberOfInputLanes), height: conveyorWidth)
     }
 
     // MARK: - Component
@@ -115,7 +120,7 @@ final class Operation: Composable {
         }
 
         let duration = movementDuration(forDistance: removalConveyorLength)
-        let delay = SKAction.wait(forDuration: Double(numberOfInputLanes - lane) / 2)
+        let delay = SKAction.wait(forDuration: Double(numberOfInputLanes - lane) / 4)
         let movement = SKAction.move(by: CGVector(dx: removalConveyorLength, dy: 0), duration: duration)
 
         item.node.position = absolutePosition(forItemAtLane: numberOfInputLanes - 1)
@@ -124,21 +129,13 @@ final class Operation: Composable {
         }
     }
 
-    // MARK: - Textures
-
-    var casingTexture: SKTexture {
-        return SKTexture(imageNamed: method.rawValue.capitalized)
-    }
-
-    let indicatorTexture = SKTexture(image: #imageLiteral(resourceName: "Indicator.png"))
-
     // MARK: - Nodes
 
     private lazy var casingNode: SKSpriteNode = {
-        let node = SKSpriteNode(texture: self.casingTexture)
+        let node = SKSpriteNode(texture: self.method.casingTexture)
         node.centerRect = CGRect(x: 0.4, y: 0, width: 0.2, height: 1)
-        node.xScale = (self.size.width + 32) / self.casingTexture.size().width
-        node.yScale = self.size.height / self.casingTexture.size().height
+        node.xScale = (self.size.width + 32) / self.method.casingTexture.size().width
+        node.yScale = self.size.height / self.method.casingTexture.size().height
         node.zPosition = 1
         return node
     }()
@@ -184,11 +181,5 @@ final class Operation: Composable {
             .wait(forDuration: 0.7),
             .colorize(withColorBlendFactor: 0.0, duration: 0.2)
         ])
-    }
-
-    // MARK: - Helper Methods
-
-    var size: CGSize {
-        return CGSize(width: conveyorWidth * CGFloat(numberOfInputLanes), height: conveyorWidth)
     }
 }

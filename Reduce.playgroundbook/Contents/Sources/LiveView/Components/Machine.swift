@@ -35,10 +35,18 @@ public final class Machine: Composable {
         self.init(["components": .array(components)])
     }
 
+    public convenience init<Element: ItemConvertible>(_ machineArray: MachineArray<Element>) {
+        self.init(machineArray.configuration + [Destroyer.configuration])
+    }
+
     // MARK: - Chainable
 
     var numberOfInputLanes: Int {
-        return firstComponent?.numberOfLanes ?? 0
+        return firstComponent?.numberOfInputLanes ?? 0
+    }
+
+    var numberOfOutputLanes: Int {
+        return lastComponent?.numberOfInputLanes ?? 0
     }
 
     var outputAnchor: CGPoint {
@@ -53,6 +61,10 @@ public final class Machine: Composable {
 
     public func trigger() {
         firstComponent?.trigger()
+    }
+
+    func process(_ items: [Int : Item]) {
+        firstComponent?.process(items)
     }
 
     // MARK: - Helpers

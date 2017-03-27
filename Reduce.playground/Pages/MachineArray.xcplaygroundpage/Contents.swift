@@ -1,28 +1,25 @@
 //: [Previous](@previous)
 
+//#-hidden-code
 import CoreGraphics
 import PlaygroundSupport
 
 let controller = MachineController(size: CGSize(width: 512, height: 768))
 controller.addFloor()
+//#-end-hidden-code
 
-public typealias Ingredient = String
+//#-editable-code Do your magic!
+let result = MachineArray(🍏, 🍐, 🍎)
+    .filter { $0.isApple }
+    .map(eat)
+    .reduce(🚽, +)
+//#-end-editable-code
 
-extension Ingredient: ItemConvertible {
-    public var title: String {
-        return self
-    }
-}
-
-let 🍏: Ingredient = "🍏"
-let 🍎: Ingredient = "🍎"
-
-let test = MachineArray(🍏, 🍎)
-    .filter { $0 == 🍎 }
-
-controller.machine = Machine(test)
+//#-hidden-code
+controller.machine = Machine(result)
 controller.machine?.trigger()
 
 PlaygroundPage.current.liveView = controller
+//#-end-hidden-code
 
 //: [Next](@next)

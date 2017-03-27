@@ -1,12 +1,16 @@
 import CoreGraphics
 
 extension Chainable {
-    var inputAnchor: CGPoint {
+    var size: CGSize {
         return .zero
     }
 
+    var inputAnchor: CGPoint {
+        return CGPoint(x: 0, y: size.height / 2)
+    }
+
     var outputAnchor: CGPoint {
-        return .zero
+        return -CGPoint(x: 0, y: size.height / 2)
     }
 
     func attach(to chainable: Chainable) {

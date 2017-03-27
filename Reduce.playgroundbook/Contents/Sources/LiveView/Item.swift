@@ -13,16 +13,23 @@ final class Item {
         node.addChild(label)
     }
 
-    convenience init?(_ configuration: [String: PlaygroundValue]) {
-        guard let title = configuration["title"]?.string else { return nil }
+    convenience init?(_ configuration: [String: PlaygroundValue]?) {
+        guard let title = configuration?["title"]?.string else { return nil }
         self.init(title: title)
     }
 
     // MARK: - Nodes
 
-    lazy var label = SKLabelNode()
+    lazy var label = SKLabelNode(fontNamed: "Menlo-Bold")
 
     // MARK: - Helpers
+
+    static func multipleFrom(configuration: [String: PlaygroundValue]?) -> [Int: Item]? {
+        return configuration?
+            .mapPairs { (Int($0)!, Item($1.dictionary)) }
+            .filterPairs { $1 != nil }
+            .mapPairs { ($0, $1!) }
+    }
 
     var size: CGSize {
         return CGSize(width: conveyorWidth, height: conveyorWidth)

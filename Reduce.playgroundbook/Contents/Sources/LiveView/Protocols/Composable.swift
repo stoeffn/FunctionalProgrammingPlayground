@@ -7,7 +7,11 @@ protocol Composable: Chainable {
 
     func trigger()
 
-    var items: [Item?] { get }
+    var numberOfInputLanes: Int { get }
 
-    func process(_ items: [Item?])
+    var numberOfOutputLanes: Int { get }
+
+    var items: [Int: Item] { get }
+
+    func process(_ items: [Int: Item])
 }

@@ -26,10 +26,12 @@ final class Destroyer: Composable {
     // MARK: - Component
 
     func process(_ items: [Int: Item]) {
-        for item in items.values {
-            item.node.run(.scale(by: 0.05, duration: 0.3)) {
-                item.node.removeFromParent()
-            }
+        items.values.forEach(remove)
+    }
+
+    private func remove(_ item: Item) {
+        item.node.run(.scale(by: 0.05, duration: 0.3)) {
+            item.node.removeFromParent()
         }
     }
 }

@@ -18,6 +18,15 @@ final class Conveyor: Composable {
         self.init(length: configuration["length"]?.cgFloat)
     }
 
+    // MARK: - Configuration
+
+    static func configuration(length: CGFloat = conveyorWidth) -> PlaygroundValue {
+        return .dictionary([
+            "type": .string(typeName),
+            "length": .floatingPoint(Double(length))
+        ])
+    }
+
     // MARK: - Chainable
 
     var inputAnchor: CGPoint {
@@ -43,13 +52,14 @@ final class Conveyor: Composable {
         setupBorder()
     }
 
-    func process(_ items: [Item?]) {
+    func process(_ items: [Int: Item]) {
         let duration = movementDuration(forDistance: length)
         let movement = SKAction.move(by: CGVector(dx: 0, dy: -length), duration: duration)
-        items.forEach { $0?.node.run(movement) }
+        items.values.forEach { $0.node.run(movement) }
 
-        Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { _ in 
-            (self.output as? Composable)?.process(items)
+        Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { _ in
+            let outputComponent = self.output as? Composable
+            outputComponent?.process(items)
         }
     }
 
@@ -62,6 +72,6 @@ final class Conveyor: Composable {
     // MARK: - Helpers
 
     var size: CGSize {
-        return CGSize(width: conveyorWidth * CGFloat(numberOfLanes) + borderWidth * 2, height: length)
+        return CGSize(width: conveyorWidth * CGFloat(numberOfInputLanes) + borderWidth * 2, height: length)
     }
 }

@@ -3,10 +3,19 @@ extension Composable {
 
     func trigger() { }
 
-    var items: [Item?] {
-        let inputComponent = input as? Composable
-        return inputComponent?.items ?? []
+    var numberOfInputLanes: Int {
+        let previousComponent = input as? Composable
+        return previousComponent?.numberOfOutputLanes ?? 0
     }
 
-    func process(_ items: [Item?]) { }
+    var numberOfOutputLanes: Int {
+        return numberOfInputLanes
+    }
+
+    var items: [Int: Item] {
+        let previousComponent = input as? Composable
+        return previousComponent?.items ?? [:]
+    }
+
+    func process(_ items: [Int: Item]) { }
 }

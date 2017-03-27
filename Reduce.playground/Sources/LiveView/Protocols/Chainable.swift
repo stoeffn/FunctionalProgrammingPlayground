@@ -5,6 +5,8 @@ protocol Chainable: class {
 
     weak var input: Chainable? { get set }
 
+    var size: CGSize { get }
+
     var inputAnchor: CGPoint { get }
 
     var output: Chainable? { get set }
