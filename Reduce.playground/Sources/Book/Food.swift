@@ -10,7 +10,7 @@ public let 🥗: Food = "🥗"
 public let 💩: Food = "💩"
 public let 🚽: Food = "🚽"
 
-extension Food: ItemConvertible {
+extension Food: ItemSerializable {
     public var title: String {
         return self
     }

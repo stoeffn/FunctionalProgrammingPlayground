@@ -6,6 +6,11 @@ import PlaygroundSupport
 
 let controller = MachineController(size: CGSize(width: 512, height: 768))
 controller.addFloor()
+
+PlaygroundPage.current.liveView = controller
+
+machineProxy = PlaygroundRemoteLiveViewProxy()
+
 //#-end-hidden-code
 
 //#-editable-code Do your magic!
@@ -16,10 +21,8 @@ let result = MachineArray(🍏, 🍐, 🍎)
 //#-end-editable-code
 
 //#-hidden-code
-controller.machine = Machine(result)
+//machineProxy?.send(command: .addComponent(destroyer))
 controller.machine?.trigger()
-
-PlaygroundPage.current.liveView = controller
 //#-end-hidden-code
 
 //: [Next](@next)

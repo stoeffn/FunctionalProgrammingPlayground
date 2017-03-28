@@ -2,10 +2,6 @@ import CoreGraphics
 import Foundation
 
 extension Composable {
-    static var typeName: String {
-        return String(describing: Self.self)
-    }
-
     func xPosition(forLane lane: Int, numberOfLanes: Int? = nil) -> CGFloat {
         let numberOfLanes = numberOfLanes ?? numberOfInputLanes
         return (CGFloat(lane) - CGFloat(numberOfLanes - 1) / 2) * conveyorWidth
@@ -21,7 +17,9 @@ extension Composable {
     }
 }
 
-func component(forType type: String) -> Composable.Type? {
+func componentType(for type: String?) -> Composable.Type? {
+    guard let type = type else { return nil }
+
     switch type.lowercased() {
     case "spawner":
         return Spawner.self

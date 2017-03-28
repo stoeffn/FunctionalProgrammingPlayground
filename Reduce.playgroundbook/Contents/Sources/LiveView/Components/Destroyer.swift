@@ -11,7 +11,7 @@ final class Destroyer: Composable {
 
     init() { }
 
-    convenience init(_ configuration: [String: PlaygroundValue]) {
+    convenience init(_ configuration: Configuration) {
         self.init()
     }
 

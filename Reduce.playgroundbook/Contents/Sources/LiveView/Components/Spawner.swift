@@ -16,7 +16,7 @@ final class Spawner: Composable {
         self.numberOfInputLanes = (items?.keys.max() ?? 0) + 1
     }
 
-    convenience init(_ configuration: [String: PlaygroundValue]) {
+    convenience init(_ configuration: Configuration) {
         let items = Item.multipleFrom(configuration: configuration["items"]?.dictionary)
         self.init(items: items)
     }

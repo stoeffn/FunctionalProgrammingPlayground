@@ -13,7 +13,7 @@ final class Item {
         node.addChild(label)
     }
 
-    convenience init?(_ configuration: [String: PlaygroundValue]?) {
+    convenience init?(_ configuration: Conf?) {
         guard let title = configuration?["title"]?.string else { return nil }
         self.init(title: title)
     }

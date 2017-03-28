@@ -14,7 +14,7 @@ final class Conveyor: Composable {
         self.length = length ?? conveyorWidth
     }
 
-    convenience init(_ configuration: [String: PlaygroundValue]) {
+    convenience init(_ configuration: Configuration) {
         self.init(length: configuration["length"]?.cgFloat)
     }
 

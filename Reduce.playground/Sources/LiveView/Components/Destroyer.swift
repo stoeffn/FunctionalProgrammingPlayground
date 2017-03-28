@@ -11,16 +11,8 @@ final class Destroyer: Composable {
 
     init() { }
 
-    convenience init(_ configuration: [String: PlaygroundValue]) {
+    convenience init(_ configuration: Configuration) {
         self.init()
-    }
-
-    // MARK: - Configuration
-
-    static var configuration: PlaygroundValue {
-        return .dictionary([
-            "type": .string(typeName)
-        ])
     }
 
     // MARK: - Component

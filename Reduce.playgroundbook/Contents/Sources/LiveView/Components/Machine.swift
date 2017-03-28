@@ -20,7 +20,7 @@ public final class Machine: Composable {
         lastComponent = components.reduce(self, addComponent)
     }
 
-    convenience init(_ configuration: [String: PlaygroundValue]) {
+    convenience init(_ configuration: Configuration) {
         let componentConfigurations = configuration["components"]?
             .array?
             .flatMap { $0.dictionary }

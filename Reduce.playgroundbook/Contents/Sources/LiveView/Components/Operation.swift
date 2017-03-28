@@ -24,7 +24,7 @@ final class Operation: Composable {
         self.description = description ?? ""
     }
 
-    convenience init(_ configuration: [String: PlaygroundValue]) {
+    convenience init(_ configuration: Configuration) {
         let method = Method(rawValue: configuration["type"]?.string?.lowercased() ?? "")
         let items = Item.multipleFrom(configuration: configuration["items"]?.dictionary)
         let description = configuration["description"]?.string

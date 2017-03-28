@@ -33,20 +33,11 @@ final class Operation: Composable {
         self.description = description ?? ""
     }
 
-    convenience init?(_ configuration: [String: PlaygroundValue]) {
+    convenience init?(_ configuration: Configuration) {
         let method = Method(rawValue: configuration["type"]?.string?.lowercased() ?? "")
         let items = Item.multipleFrom(configuration: configuration["items"]?.dictionary)
         let description = configuration["description"]?.string
         self.init(method: method, items: items, description: description)
-    }
-
-    // MARK: - Configuration
-
-    static func configuration(forItems items: [Int: ItemConvertible], method: Method) -> PlaygroundValue {
-        return .dictionary([
-            "type": .string(method.rawValue),
-            "items": .dictionary(items.mapPairs { (String($0), $1.configuration) })
-        ])
     }
 
     // MARK: - Chainable

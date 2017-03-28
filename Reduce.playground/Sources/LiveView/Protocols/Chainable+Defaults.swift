@@ -14,6 +14,6 @@ extension Chainable {
     }
 
     func attach(to chainable: Chainable) {
-        node.position = chainable.node.position + chainable.outputAnchor - inputAnchor
+        node.position = chainable.position + chainable.outputAnchor - inputAnchor
     }
 }

@@ -14,17 +14,8 @@ final class Conveyor: Composable, Bordered {
         self.length = length ?? conveyorWidth
     }
 
-    convenience init(_ configuration: [String: PlaygroundValue]) {
+    convenience init(_ configuration: Configuration) {
         self.init(length: configuration["length"]?.cgFloat)
-    }
-
-    // MARK: - Configuration
-
-    static func configuration(length: CGFloat = conveyorWidth) -> PlaygroundValue {
-        return .dictionary([
-            "type": .string(typeName),
-            "length": .floatingPoint(Double(length))
-        ])
     }
 
     // MARK: - Chainable
