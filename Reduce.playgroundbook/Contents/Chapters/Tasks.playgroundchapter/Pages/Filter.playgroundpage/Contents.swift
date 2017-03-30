@@ -27,16 +27,19 @@ import PlaygroundSupport
 
 let page = PlaygroundPage.current
 let food = [🍎, 🍓, 🥒, 🥕, 🍃, 🍂]
+
+resetMachine()
 //#-end-hidden-code
 //#-code-completion(everything, hide)
-//#-code-completion(identifier, show, food, isVegetable, isApple, ingredients, item, filter)
+//#-code-completion(identifier, show, food, isVegetable, isApple, ingredients, item, MachineArray.filter)
 //#-code-completion(keyword, show, let)
 //#-editable-code
 let ingredients = food
     .filter({ item in item.isVegetable })
-// TODO: Set assessment status after the animation ends!
 //#-end-editable-code
 //#-hidden-code
+triggerMachine()
+
 if ingredients == [🥒, 🥕, 🍃] {
     page.assessmentStatus = .pass(
         message: "**Well done!** Now we don't have to worry about expired food anymore 👍🏻")
