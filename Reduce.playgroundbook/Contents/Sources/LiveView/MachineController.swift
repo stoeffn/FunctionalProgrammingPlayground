@@ -1,6 +1,7 @@
 import SpriteKit
 import UIKit
 
+/// Responsible for controlling the scene that visualizes list operations.
 public final class MachineController: UIViewController {
     // MARK: - Life Cycle
 
@@ -45,6 +46,8 @@ public final class MachineController: UIViewController {
 
     // MARK: - Machine
 
+    /// The machine currently presented by the controller. Setting it to `nil` will remove the current machine. Adding
+    /// a machine will attach it to the top and display it automatically.
     public var machine: Machine? {
         didSet {
             oldValue?.node.removeFromParent()
@@ -58,6 +61,7 @@ public final class MachineController: UIViewController {
 
     // MARK: - Helpers
 
+    /// A horizontally centered point slightly above the view because items should spawn off-screen.
     private var topAnchor: CGPoint {
         return CGPoint(x: view.bounds.size.width / 2, y: view.bounds.height + conveyorWidth / 2)
     }

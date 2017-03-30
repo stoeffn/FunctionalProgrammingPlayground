@@ -14,10 +14,7 @@ machineProxy = PlaygroundRemoteLiveViewProxy()
 //#-end-hidden-code
 
 //#-editable-code Do your magic!
-let result = MachineArray(🍏, 🍎)
-    .filter { $0.isApple }
-    .map(eat)
-    .reduce(🚽, +)
+
 //#-end-editable-code
 
 //#-hidden-code

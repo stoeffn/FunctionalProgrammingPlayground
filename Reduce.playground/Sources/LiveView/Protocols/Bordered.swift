@@ -1,5 +1,7 @@
 import SpriteKit
 
+/// Adds border functionality to a component. When `setupBorder()` is called it adds left and right borders with a
+/// custom texture to the node.
 protocol Bordered: Chainable {
     var borderTexture: SKTexture { get }
 }
@@ -23,7 +25,7 @@ extension Bordered {
 
     private func borderTile(forSide side: Side, at index: Int) -> SKSpriteNode {
         let border = SKSpriteNode(texture: borderTexture)
-        border.position = .init(x: side.factor * (size.width / 2 - borderWidth), y: yPosition(forBorderTileAt: index))
+        border.position = CGPoint(x: side.factor * (size.width / 2 - borderWidth), y: yPosition(forBorderTileAt: index))
         border.xScale = side.factor
         return border
     }
@@ -32,6 +34,7 @@ extension Bordered {
         return conveyorBorderTexture.size().width / 2
     }
 
+    /// Adds left and right borders with a custom texture to the node.
     func setupBorder() {
         for index in 0..<numberOfBorderTiles(forHeight: size.height) {
             node.addChild(borderTile(forSide: .left, at: index))

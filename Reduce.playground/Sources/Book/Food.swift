@@ -7,10 +7,11 @@ public let 🥒: Food = "🥒"
 public let 🥕: Food = "🥕"
 public let 🍃: Food = "🍃"
 public let 🍂: Food = "🍂"
-public let 🍽: Food = "🍽"
 public let 🥗: Food = "🥗"
-public let 💩: Food = "💩"
-public let 🚽: Food = "🚽"
+public let 🥔: Food = "🥔"
+public let 🌾: Food = "🌾"
+public let 🐖: Food = "🐖"
+
 
 extension Food: ItemSerializable {
     public var title: String {
@@ -37,8 +38,15 @@ extension Food: ItemSerializable {
         default: return 7
         }
     }
-}
 
-public func eat(_ food: Food) -> Food {
-    return 💩
+
+    /// The processed version of this food item or itself if it cannot be processed.
+    public var processed: Food {
+        switch self {
+        case 🥔: return "🍟"
+        case 🐖: return "🥓"
+        case 🌾: return "🍞"
+        default: return self
+        }
+    }
 }

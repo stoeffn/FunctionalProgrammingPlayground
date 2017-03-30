@@ -44,3 +44,11 @@ public struct MachineArray<Element> where Element: ItemSerializable {
         return result
     }
 }
+
+public func resetMachine() {
+    machineProxy?.send(command: .reset)
+}
+
+public func triggerMachine() {
+    machineProxy?.send(command: .trigger)
+}

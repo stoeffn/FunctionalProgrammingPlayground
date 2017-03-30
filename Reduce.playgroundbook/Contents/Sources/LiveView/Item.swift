@@ -1,6 +1,7 @@
 import PlaygroundSupport
 import SpriteKit
 
+/// Represents an item (e.g. food) that can be transported on a conveyor or operated on.
 final class Item {
     let node = SKNode()
 
@@ -24,8 +25,9 @@ final class Item {
 
     // MARK: - Helpers
 
-    static func multipleFrom(configuration: Configuration?) -> [Int: Item]? {
-        return configuration?
+    /// Converts a dictionary of item configurations to a list of items.
+    static func multipleFrom(configuration: Configuration?) -> [Int: Item] {
+        return (configuration ?? [:])
             .mapPairs { (Int($0)!, Item($1.dictionary)) }
             .filterPairs { $1 != nil }
             .mapPairs { ($0, $1!) }
