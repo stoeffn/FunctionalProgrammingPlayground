@@ -3,6 +3,7 @@
     <pages>
         <page name='Machine'/>
         <page name='MachineArray'/>
+        <page name='For-Loop'/>
         <page name='Filter'/>
         <page name='Filter2'/>
         <page name='Reduce'/>

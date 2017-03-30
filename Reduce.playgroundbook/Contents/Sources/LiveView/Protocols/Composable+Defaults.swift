@@ -1,4 +1,10 @@
+import CoreGraphics
+
 extension Composable {
+    var position: CGPoint {
+        return node.position
+    }
+
     func updateAppearance() { }
 
     func trigger() { }

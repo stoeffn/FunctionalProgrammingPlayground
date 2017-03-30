@@ -50,7 +50,7 @@ public final class MachineController: UIViewController {
             oldValue?.node.removeFromParent()
 
             if let machine = machine {
-                machine.attach(to: topAnchor + CGPoint(x: 0, y: conveyorWidth / 2))
+                machine.attach(to: topAnchor)
                 scene.addChild(machine.node)
             }
         }
@@ -59,6 +59,6 @@ public final class MachineController: UIViewController {
     // MARK: - Helpers
 
     private var topAnchor: CGPoint {
-        return CGPoint(x: view.bounds.size.width / 2, y: view.bounds.height)
+        return CGPoint(x: view.bounds.size.width / 2, y: view.bounds.height + conveyorWidth / 2)
     }
 }

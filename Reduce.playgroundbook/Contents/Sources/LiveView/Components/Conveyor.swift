@@ -1,7 +1,7 @@
 import PlaygroundSupport
 import SpriteKit
 
-final class Conveyor: Composable {
+final class Conveyor: Composable, Bordered {
     let node: SKNode = SKCropNode()
     let length: CGFloat
 
@@ -18,27 +18,10 @@ final class Conveyor: Composable {
         self.init(length: configuration["length"]?.cgFloat)
     }
 
-    // MARK: - Configuration
-
-    static func configuration(length: CGFloat = conveyorWidth) -> PlaygroundValue {
-        return .dictionary([
-            "type": .string(typeName),
-            "length": .floatingPoint(Double(length))
-        ])
-    }
-
     // MARK: - Chainable
 
-    var inputAnchor: CGPoint {
-        return CGPoint(x: 0, y: length / 2)
-    }
-
-    var outputAnchor: CGPoint {
-        return -CGPoint(x: 0, y: length / 2)
-    }
-
-    func startPosition(forLane lane: Int) -> CGPoint {
-        return node.position + CGPoint(x: xPosition(forLane: lane), y: length / 2)
+    var size: CGSize {
+        return CGSize(width: conveyorWidth * CGFloat(numberOfInputLanes) + borderWidth * 2, height: length)
     }
 
     // MARK: - Component
@@ -63,15 +46,7 @@ final class Conveyor: Composable {
         }
     }
 
-    // MARK: - Textures
+    // MARK: - Border
 
-    let panelTexture = SKTexture(image: #imageLiteral(resourceName: "ConveyorPanel.png"))
-
-    let borderTexture = SKTexture(image: #imageLiteral(resourceName: "ConveyorBorder.png"))
-
-    // MARK: - Helpers
-
-    var size: CGSize {
-        return CGSize(width: conveyorWidth * CGFloat(numberOfInputLanes) + borderWidth * 2, height: length)
-    }
+    let borderTexture: SKTexture = conveyorBorderTexture
 }

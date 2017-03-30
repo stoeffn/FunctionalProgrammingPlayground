@@ -2,15 +2,17 @@ public typealias Food = String
 
 public let 🍏: Food = "🍏"
 public let 🍎: Food = "🍎"
-public let 🍐: Food = "🍐"
+public let 🍓: Food = "🍓"
 public let 🥒: Food = "🥒"
 public let 🥕: Food = "🥕"
+public let 🍃: Food = "🍃"
+public let 🍂: Food = "🍂"
 public let 🍽: Food = "🍽"
 public let 🥗: Food = "🥗"
 public let 💩: Food = "💩"
 public let 🚽: Food = "🚽"
 
-extension Food: ItemConvertible {
+extension Food: ItemSerializable {
     public var title: String {
         return self
     }
@@ -20,7 +22,7 @@ extension Food: ItemConvertible {
     }
 
     public var isVegetable: Bool {
-        return [🥒, 🥕].contains(self)
+        return [🥒, 🥕, 🍃, 🍂].contains(self)
     }
 }
 

@@ -21,15 +21,6 @@ final class Spawner: Composable {
         self.init(items: items)
     }
 
-    // MARK: - Configuration
-
-    static func configuration(forItems items: [Int: ItemConvertible]) -> PlaygroundValue {
-        return .dictionary([
-            "type": .string(typeName),
-            "items": .dictionary(items.mapPairs { (String($0), $1.configuration) })
-        ])
-    }
-
     // MARK: - Component
 
     func trigger() {

@@ -13,7 +13,7 @@ final class Item {
         node.addChild(label)
     }
 
-    convenience init?(_ configuration: Conf?) {
+    convenience init?(_ configuration: Configuration?) {
         guard let title = configuration?["title"]?.string else { return nil }
         self.init(title: title)
     }
@@ -24,7 +24,7 @@ final class Item {
 
     // MARK: - Helpers
 
-    static func multipleFrom(configuration: [String: PlaygroundValue]?) -> [Int: Item]? {
+    static func multipleFrom(configuration: Configuration?) -> [Int: Item]? {
         return configuration?
             .mapPairs { (Int($0)!, Item($1.dictionary)) }
             .filterPairs { $1 != nil }

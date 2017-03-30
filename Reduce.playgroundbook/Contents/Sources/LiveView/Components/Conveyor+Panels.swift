@@ -2,7 +2,7 @@ import SpriteKit
 
 extension Conveyor {
     private var panelHeight: CGFloat {
-        return panelTexture.size().height * 0.8
+        return conveyorPanelTexture.size().height * 0.8
     }
 
     private func numberOfPanels(forLength length: CGFloat) -> Int {
@@ -21,10 +21,10 @@ extension Conveyor {
     }
 
     private func panel(for index: Int) -> SKSpriteNode {
-        let panel = SKSpriteNode(texture: panelTexture)
+        let panel = SKSpriteNode(texture: conveyorPanelTexture)
         panel.position = CGPoint(x: 0, y: yPosition(forPanelAt: index))
         panel.centerRect = CGRect(x: 0.25, y: 0, width: 0.5, height: 1)
-        panel.xScale = (size.width - borderWidth * 2) / panelTexture.size().width
+        panel.xScale = (size.width - borderWidth * 2) / conveyorPanelTexture.size().width
         panel.run(panelAction)
         return panel
     }

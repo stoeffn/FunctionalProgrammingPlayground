@@ -2,11 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Version</key>
-	<string>1.0</string>
-	<key>Name</key>
-	<string>Second Example Page</string>
-	<key>LiveViewMode</key>
-	<string>VisibleByDefault</string>
+	<key>Terms</key>
+	<dict>
+		<key>closure</key>
+		<dict>
+			<key>Definition</key>
+			<string>TODO</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

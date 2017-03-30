@@ -1,7 +1,7 @@
 import PlaygroundSupport
 
 protocol Composable: Chainable {
-    init(_ configuration: [String: PlaygroundValue])
+    init?(_ configuration: Configuration)
 
     func updateAppearance()
 

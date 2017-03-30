@@ -15,21 +15,15 @@ final class Destroyer: Composable {
         self.init()
     }
 
-    // MARK: - Configuration
-
-    static var configuration: PlaygroundValue {
-        return .dictionary([
-            "type": .string(typeName)
-        ])
-    }
-
     // MARK: - Component
 
     func process(_ items: [Int: Item]) {
-        for item in items.values {
-            item.node.run(.scale(by: 0.05, duration: 0.3)) {
-                item.node.removeFromParent()
-            }
+        items.values.forEach(remove)
+    }
+
+    private func remove(_ item: Item) {
+        item.node.run(.scale(by: 0.05, duration: 0.3)) {
+            item.node.removeFromParent()
         }
     }
 }

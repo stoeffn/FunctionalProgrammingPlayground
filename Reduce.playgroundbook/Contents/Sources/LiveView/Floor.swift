@@ -11,8 +11,4 @@ final class Floor {
 
         setupTiles()
     }
-
-    // MARK: - Textures
-
-    let tileTexture = SKTexture(image: #imageLiteral(resourceName: "FloorTile.png"))
 }
