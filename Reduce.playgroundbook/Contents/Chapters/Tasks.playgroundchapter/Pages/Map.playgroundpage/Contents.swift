@@ -25,9 +25,9 @@
 import PlaygroundSupport
 
 let page = PlaygroundPage.current
-let ingredients = [🥔, 🌾, 🐖]
+machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 
-resetMachine()
+let ingredients = MachineArray(🥔, 🌾, 🐖)
 //#-end-hidden-code
 //#-code-completion(everything, hide)
 //#-code-completion(identifier, show, food, isVegetable, isApple, processed, ingredients, item, filter, reduce, map)
@@ -35,14 +35,14 @@ resetMachine()
 //#-editable-code
 let burger = ingredients
     .map({ item in item })
-    .reduce()
+    .reduce(🍽, { _, _ in 🍽 })
 
 // TODO: Hints
 //#-end-editable-code
 //#-hidden-code
 triggerMachine()
 
-if burger == 🍔 {
+if burger == "🍔" {
     page.assessmentStatus = .pass(
         message: "**Well done!** That tasted good 😋")
 } else {

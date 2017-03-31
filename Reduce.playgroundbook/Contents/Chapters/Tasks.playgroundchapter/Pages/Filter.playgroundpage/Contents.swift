@@ -26,9 +26,10 @@
 import PlaygroundSupport
 
 let page = PlaygroundPage.current
-let food = [🍎, 🍓, 🥒, 🥕, 🍃, 🍂]
+machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 
-resetMachine()
+let food = MachineArray(🍎, 🍓, 🥒, 🥕, 🍃, 🍂)
+
 //#-end-hidden-code
 //#-code-completion(everything, hide)
 //#-code-completion(identifier, show, food, isVegetable, isApple, ingredients, item, MachineArray.filter)

@@ -2,7 +2,7 @@ import PlaygroundSupport
 
 public var machineProxy: PlaygroundRemoteLiveViewProxy?
 
-public struct MachineArray<Element> where Element: ItemSerializable {
+public struct MachineArray<Element> where Element: ItemSerializable, Element: Equatable {
     let items: [Int: Element]
 
     init(_ items: [Int: Element] = [:]) {
@@ -43,12 +43,15 @@ public struct MachineArray<Element> where Element: ItemSerializable {
         machineProxy?.send(command: .addComponent(conveyor()))
         return result
     }
-}
 
-public func resetMachine() {
-    machineProxy?.send(command: .reset)
+    public static func == (lhs: MachineArray<Element>, rhs: Array<Element>) -> Bool {
+        return Array(lhs.items.values) == rhs
+    }
 }
 
 public func triggerMachine() {
-    machineProxy?.send(command: .trigger)
+    guard let proxy = machineProxy else {
+        fatalError("Proxy not available.")
+    }
+    proxy.send(command: .trigger)
 }

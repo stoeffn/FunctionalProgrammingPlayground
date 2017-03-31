@@ -14,12 +14,13 @@ machineProxy = PlaygroundRemoteLiveViewProxy()
 //#-end-hidden-code
 
 //#-editable-code Do your magic!
-
+let food = MachineArray(🍎, 🍓, 🥒, 🥕, 🍃, 🍂)
+let ingredients = food
+    .filter({ item in item.isVegetable })
 //#-end-editable-code
 
 //#-hidden-code
-//machineProxy?.send(command: .addComponent(destroyer))
-controller.machine?.trigger()
+triggerMachine()
 //#-end-hidden-code
 
 //: [Next](@next)

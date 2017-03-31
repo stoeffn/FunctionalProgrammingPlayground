@@ -2,6 +2,11 @@ import CoreGraphics
 import Foundation
 
 extension Composable {
+    /// The relative x position for the middle of a lane.
+    ///
+    /// - Parameters:
+    ///   - lane: The lanes index, starting from the left.
+    ///   - numberOfLanes: The number of lanes available; defaults to the number of input lanes.
     func xPosition(forLane lane: Int, numberOfLanes: Int? = nil) -> CGFloat {
         let numberOfLanes = numberOfLanes ?? numberOfInputLanes
         return (CGFloat(lane) - CGFloat(numberOfLanes - 1) / 2) * conveyorWidth

@@ -25,9 +25,9 @@
 import PlaygroundSupport
 
 let page = PlaygroundPage.current
-let food = [🍎, 🍓, 🥒, 🥕, 🍃, 🍂]
+machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 
-resetMachine()
+let food = MachineArray(🍎, 🍓, 🥒, 🥕, 🍃, 🍂)
 //#-end-hidden-code
 //#-code-completion(everything, hide)
 //#-code-completion(identifier, show, food, isVegetable, isApple, ingredients, item, filter, reduce)
@@ -43,9 +43,9 @@ let salad = food
 //#-hidden-code
 triggerMachine()
 
-if ingredients == [🥒, 🥕, 🍃] {
+if salad == "🥗" {
     page.assessmentStatus = .pass(
-        message: "**Well done!** Our salas is ready to be served 🥗")
+        message: "**Well done!** Our salad is ready to be served 🥗")
 } else {
     page.assessmentStatus = .fail(hints: [
 
