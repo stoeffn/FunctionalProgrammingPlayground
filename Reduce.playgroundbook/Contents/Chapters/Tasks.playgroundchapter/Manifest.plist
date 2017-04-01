@@ -8,6 +8,7 @@
 	<string>Tasks</string>
 	<key>Pages</key>
 	<array>
+		<string>Introduction.cutscenepage</string>
 		<string>Filter.playgroundpage</string>
 		<string>Reduce.playgroundpage</string>
 		<string>Map.playgroundpage</string>

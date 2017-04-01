@@ -33,9 +33,10 @@ let food = MachineArray(🍎, 🍓, 🥒, 🥕, 🍃, 🍂)
 //#-code-completion(identifier, show, food, isVegetable, isApple, ingredients, item, filter, reduce)
 //#-code-completion(keyword, show, let)
 //#-editable-code
+let plate: Plate = 🍽
 let salad = food
-    .filter({ item in item.isVegetable })
-    .reduce(🍽, { _, _ in 🍽 })
+    .filter { item in item.isVegetable }
+    .reduce(<#number of llamas#>) { <#number of llamas#> }
 
 // TODO: Use code copying!
 // TODO: Hints!

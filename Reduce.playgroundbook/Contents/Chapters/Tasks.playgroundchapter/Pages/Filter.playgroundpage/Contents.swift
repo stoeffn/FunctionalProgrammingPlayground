@@ -36,7 +36,8 @@ let food = MachineArray(🍎, 🍓, 🥒, 🥕, 🍃, 🍂)
 //#-code-completion(keyword, show, let)
 //#-editable-code
 let ingredients = food
-    .filter({ item in item.isVegetable })
+    .filter { item in item.isVegetable }
+    .filter { <#number of llamas#> }
 //#-end-editable-code
 //#-hidden-code
 triggerMachine()

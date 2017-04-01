@@ -33,9 +33,10 @@ let ingredients = MachineArray(🥔, 🌾, 🐖)
 //#-code-completion(identifier, show, food, isVegetable, isApple, processed, ingredients, item, filter, reduce, map)
 //#-code-completion(keyword, show, let)
 //#-editable-code
+let plate: Plate = 🍽
 let burger = ingredients
-    .map({ item in item })
-    .reduce(🍽, { _, _ in 🍽 })
+    .map { <#number of llamas#> }
+    .reduce(<#number of llamas#>) { <#number of llamas#> }
 
 // TODO: Hints
 //#-end-editable-code
