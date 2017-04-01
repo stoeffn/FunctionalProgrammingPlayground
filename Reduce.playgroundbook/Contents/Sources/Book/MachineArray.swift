@@ -9,7 +9,7 @@ public struct MachineArray<Element> where Element: ItemSerializable, Element: Eq
         self.items = items
     }
 
-    public init(_ items: Element...) {
+    public init(_ items: [Element]) {
         let indexedItems = items.indexedDictionary
         self.init(indexedItems)
 

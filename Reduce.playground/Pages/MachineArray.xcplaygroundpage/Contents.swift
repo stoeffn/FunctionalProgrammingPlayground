@@ -14,9 +14,20 @@ machineProxy = PlaygroundRemoteLiveViewProxy()
 //#-end-hidden-code
 
 //#-editable-code Do your magic!
-let food = MachineArray(🍎, 🍓, 🥒, 🥕, 🍃, 🍂)
-let ingredients = food
-    .filter({ item in item.isVegetable })
+let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎, 🚓]
+//#-hidden-code
+    .visualized
+//#-end-hidden-code
+
+//#-editable-code
+//#-copy-source(code)
+let electricCars = cars
+    .filter { car in car.isElectric }
+
+/*let maxElectricCarSpeed = cars
+    .filter { $0.isElectric }
+    .map { $0.maxSpeed }
+    .reduce(0, max)*/
 //#-end-editable-code
 
 //#-hidden-code

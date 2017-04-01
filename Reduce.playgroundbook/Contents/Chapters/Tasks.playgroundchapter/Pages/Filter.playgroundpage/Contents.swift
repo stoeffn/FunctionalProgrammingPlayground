@@ -1,54 +1,50 @@
 /*:
- # Let's Make a Salad! 🥗
-
- Every great meal starts with a delicious appetizer. So a good old vegetable salad might be a perfect fit—after all, we all care about our health, don't we?
-
- I've already got some ingredients prepared. But as we want to preserve the sweet stuff for dessert, we need to *filter* our list `food`. However, using `for`-loops with nested conditions can become quite cumbersome. Is there a better way? Let me tell you about…
+ # Going All Electric! 💡
  
+ First of all, we want to *filter* our array of cars as we only want to include electric ones in our calculation.
+
  # Functional Filtering 😎
 
  Borrowing techniques from *functional programming*, a filter operations becomes as easy as a single method call:
 
  * callout(Filtering):
- `food.filter(isIncluded: (Item) -> Bool)`
+ `cars.filter(isIncluded: (Car) -> Bool)`
  
- The code below filters out ingredients we don't want in our salad. As you can see, we are able to state the problem at hand in a *declarative* way, without having to know about the internal implementation. How cool is that? We just provide a closure that—for each item—decides whether it should be included in the resulting list.
- 
- # Did You Check the Expiration Date?
+ As you can see, one can state the problem at hand in a *declarative* way, without having to know about the internal implementation. How cool is that? We just provide a closure that—for each car—decides whether it should be included in the resulting array.
 
- Me neither… These brown leaves don't look good anymore 😳
+ **Modify the code below in a way that `electricCars` only contains cars that have an electric engine!**
 
- **Use your filtering-skills and make sure there is no ingredient with an `age` over `4` in our list!**
- 
  *Watch the animation on the right as you run your code 😉*
  */
 //#-hidden-code
-import PlaygroundSupport
+//import PlaygroundSupport
 
-let page = PlaygroundPage.current
-machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
-
-let food = MachineArray(🍎, 🍓, 🥒, 🥕, 🍃, 🍂)
-
+//let page = PlaygroundPage.current
+//machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 //#-end-hidden-code
 //#-code-completion(everything, hide)
-//#-code-completion(identifier, show, food, isVegetable, isApple, ingredients, item, MachineArray.filter)
+//#-code-completion(identifier, show, let, cars, car, filter(), isElectric, true, false)
 //#-code-completion(keyword, show, let)
+let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
+//#-hidden-code
+//    .visualized
+//#-end-hidden-code
+
 //#-editable-code
-let ingredients = food
-    .filter { item in item.isVegetable }
-    .filter { <#number of llamas#> }
+//#-copy-source(code)
+let electricCars = cars
+    .filter({ car in <#T##Condition##Bool#> })
+//#-end-copy-source
 //#-end-editable-code
 //#-hidden-code
-triggerMachine()
+//triggerMachine()
 
-if ingredients == [🥒, 🥕, 🍃] {
+/*if electricCars == [🚗, 🚙, 🚎] {
     page.assessmentStatus = .pass(
-        message: "**Well done!** Now we don't have to worry about expired food anymore 👍🏻")
+        message: "**Well done!** With one line of code, you filtered the array of cars in a *declarative* way 👍🏻")
 } else {
     page.assessmentStatus = .fail(hints: [
-        "Try using another filter operation or revise the condition 😉",
-        "The ingredients should contain 🥒, 🥕, 🍃, and 🍂 but not 🍎 or 🍓."
+        "There is an `isElectric` property that may help you 😉"
     ], solution: nil)
-}
+}*/
 //#-end-hidden-code
