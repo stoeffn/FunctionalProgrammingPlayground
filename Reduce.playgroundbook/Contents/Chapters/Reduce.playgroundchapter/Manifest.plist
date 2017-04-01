@@ -10,8 +10,9 @@
 	<array>
 		<string>Introduction.playgroundpage</string>
 		<string>Filter.playgroundpage</string>
-		<string>Reduce.playgroundpage</string>
 		<string>Map.playgroundpage</string>
+		<string>Reduce.playgroundpage</string>
+		<string>Recap.playgroundpage</string>
 	</array>
 </dict>
 </plist>

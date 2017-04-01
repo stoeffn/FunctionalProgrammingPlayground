@@ -44,8 +44,15 @@ public struct MachineArray<Element> where Element: ItemSerializable, Element: Eq
         return result
     }
 
-    public static func == (lhs: MachineArray<Element>, rhs: Array<Element>) -> Bool {
-        return Array(lhs.items.values) == rhs
+    public static func == (machineArray: MachineArray<Element>, rhs: Array<Element>) -> Bool {
+        let lhs = machineArray.items
+            .sorted { $0.0 < $1.0 }
+            .map { $1 }
+        return lhs == rhs
+    }
+
+    public static func == (lhs: Array<Element>, rhs: MachineArray<Element>) -> Bool {
+        return rhs == lhs
     }
 }
 

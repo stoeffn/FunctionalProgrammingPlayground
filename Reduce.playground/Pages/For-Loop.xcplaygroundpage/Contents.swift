@@ -1,6 +1,6 @@
 //: [Previous](@previous)
 
-let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎, 🚓]
+let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
 //#-hidden-code
     .visualized
 //#-end-hidden-code
@@ -22,5 +22,7 @@ let maxElectricCarSpeed = cars
     .filter { $0.isElectric }
     .map { $0.maxSpeed }
     .reduce(0, max)
+
+electricCars == [🚗, 🚙, 🚎]
 
 //: [Next](@next)

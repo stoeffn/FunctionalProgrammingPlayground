@@ -6,7 +6,7 @@ public struct Car {
     public let isElectric: Bool
 
     /// The maximum speed in kilometers per hour.
-    public let maxSpeed: Int
+    public let maxSpeed: Speed
 }
 
 extension Car: ItemSerializable {
@@ -27,6 +27,5 @@ public let 🚗 = Car(emoji: "🚗", isElectric: true, maxSpeed: 225)
 public let 🚕 = Car(emoji: "🚕", isElectric: false, maxSpeed: 200)
 public let 🚙 = Car(emoji: "🚙", isElectric: true, maxSpeed: 210)
 public let 🏎 = Car(emoji: "🏎", isElectric: false, maxSpeed: 340)
-public let 🚓 = Car(emoji: "🚓", isElectric: true, maxSpeed: 220)
 public let 🚌 = Car(emoji: "🚌", isElectric: false, maxSpeed: 160)
 public let 🚎 = Car(emoji: "🚎", isElectric: true, maxSpeed: 120)

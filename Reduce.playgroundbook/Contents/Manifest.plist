@@ -16,7 +16,7 @@
 	<string>ios10.0</string>
 	<key>Chapters</key>
 	<array>
-		<string>Tasks.playgroundchapter</string>
+		<string>Reduce.playgroundchapter</string>
 	</array>
 	<key>ImageReference</key>
 	<string>Icon.png</string>

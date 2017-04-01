@@ -17,34 +17,31 @@
  *Watch the animation on the right as you run your code 😉*
  */
 //#-hidden-code
-//import PlaygroundSupport
+import PlaygroundSupport
 
-//let page = PlaygroundPage.current
-//machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
+let page = PlaygroundPage.current
+machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 //#-end-hidden-code
 //#-code-completion(everything, hide)
-//#-code-completion(identifier, show, let, cars, car, filter(), isElectric, true, false)
+//#-code-completion(identifier, show, cars, car, isElectric, speed, .)
 //#-code-completion(keyword, show, let)
 let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
 //#-hidden-code
-//    .visualized
+    .visualized
 //#-end-hidden-code
-
 //#-editable-code
-//#-copy-source(code)
 let electricCars = cars
-    .filter({ car in <#T##Condition##Bool#> })
-//#-end-copy-source
+    .filter { car in <#T##Condition##Bool#> }
 //#-end-editable-code
 //#-hidden-code
-//triggerMachine()
+triggerMachine()
 
-/*if electricCars == [🚗, 🚙, 🚎] {
+if electricCars == [🚗, 🚙, 🚎] {
     page.assessmentStatus = .pass(
-        message: "**Well done!** With one line of code, you filtered the array of cars in a *declarative* way 👍🏻")
+        message: "**Well Done!** With only one line of code, you filtered the array of cars in a *declarative* way 👍\n\n**[Next Page](@next)**")
 } else {
     page.assessmentStatus = .fail(hints: [
-        "There is an `isElectric` property that may help you 😉"
+        "There is an `isElectric` property that might help you 😉"
     ], solution: nil)
-}*/
+}
 //#-end-hidden-code
