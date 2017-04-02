@@ -8,7 +8,6 @@
 	<string>Reduce</string>
 	<key>Pages</key>
 	<array>
-		<string>Introduction.playgroundpage</string>
 		<string>Filter.playgroundpage</string>
 		<string>Map.playgroundpage</string>
 		<string>Reduce.playgroundpage</string>

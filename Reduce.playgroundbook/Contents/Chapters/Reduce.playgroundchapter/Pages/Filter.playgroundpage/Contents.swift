@@ -1,7 +1,11 @@
 /*:
+ # Welcome 😀
+
+ In this Swift Playground, you will learn how to apply some basic methods from *functional programming*. They will help you write cleaner, more consice, and thus more readable code. However, a complete introduction to functional programming is outside the scope of this playground, which is intended as a short inspiration of what may be a cool thing to learn.
+
  # Going All Electric! 💡
  
- First of all, we want to *filter* our array of cars as we only want to include electric ones in our calculation.
+ Our goal is to calculate the maximum speed of electric cars in the `cars` array. First of all, we want to *filter* our array of cars as we only want to include electric ones in our calculation.
 
  # Functional Filtering 😎
 
