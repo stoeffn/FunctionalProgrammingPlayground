@@ -90,8 +90,8 @@ public final class MachineController: UIViewController {
 
     // MARK: - Machine
 
-    /// The machine currently presented by the controller. Setting it to `nil` will remove the current machine. Adding
-    /// a machine will attach it to the top and display it automatically.
+    /// The machine currently presented by the controller. Setting it to `nil` will remove the current machine and show
+    /// a placeholder insteat. Adding a machine will attach it to the top and display it automatically.
     public var machine: Machine? {
         didSet {
             placeholderView.isHidden = machine != nil

@@ -1,6 +1,7 @@
 import PlaygroundSupport
 import SpriteKit
 
+/// A bin that collects and "holds" items upon arrival.
 final class Bin: Composable {
     let node: SKNode = SKNode()
 
@@ -34,6 +35,7 @@ final class Bin: Composable {
         node.addChild(binNode)
     }
 
+    /// Vertically centers the items given in this bin.
     func process(_ items: [Int: Item]) {
         self.items = items
 

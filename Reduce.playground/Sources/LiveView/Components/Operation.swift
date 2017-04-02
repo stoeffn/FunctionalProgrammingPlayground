@@ -1,6 +1,7 @@
 import PlaygroundSupport
 import SpriteKit
 
+/// AN operation like `filter`, `map`, or `reduce`.
 final class Operation: Composable {
     enum Method: String {
         case filter, map, reduce
@@ -66,6 +67,7 @@ final class Operation: Composable {
         }
     }
 
+    /// Moves the items to its vertical center and then applies an action, which depends on the method chosen.
     func process(_ items: [Int: Item]) {
         items.forEach(processItem)
 
@@ -132,7 +134,7 @@ final class Operation: Composable {
     }()
 
     private lazy var labelNode: SKLabelNode = {
-        let label = SKLabelNode(fontNamed: "Menlo-Bold")
+        let label = SKLabelNode(fontNamed: monoSpacedFontName)
         label.verticalAlignmentMode = .center
         label.color = .white
         label.fontSize = self.size.height / 4

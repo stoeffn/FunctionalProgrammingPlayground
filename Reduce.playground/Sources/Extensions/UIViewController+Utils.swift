@@ -1,6 +1,8 @@
 import UIKit
 
 public extension UIViewController {
+    /// Creates a new view controller in a window with a specific size. Useful for setting the size in an Xcode
+    /// playground.
     public convenience init(size: CGSize) {
         self.init(nibName: nil, bundle: nil)
 

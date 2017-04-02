@@ -41,6 +41,7 @@ final class Item {
         switch textLength {
         case 0...1: return size.height * 0.6
         case 2...4: return size.height * 0.4
+        case 6...6: return size.height * 0.3
         default: return size.height * 0.2
         }
     }

@@ -9,7 +9,9 @@
 
  **Just play around and apply what you've learned ☺️**
  
- *The animation on the right will adapt automatically to your code. Maybe try adding new operations?*
+ * Experiment: ````let food = [🥔, 🌾, 🐖].map { $0.processed }````
+ 
+ *The animation on the right will adapt automatically to your code. Maybe try adding new operations? Or cook some food?*
  
  ---
  
@@ -22,9 +24,9 @@ let page = PlaygroundPage.current
 machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 //#-end-hidden-code
 //#-code-completion(everything, hide)
-//#-code-completion(identifier, show, cars, car, isElectric, speed, reduce, max, .)
+//#-code-completion(identifier, show, cars, car, isElectric, speed, reduce, max, food, items, item, processed, isVegetable, isApple, 🚗, 🚕, 🚙, 🚌, 🚎, 🏎, 🥔, 🌾, 🐖, .)
 //#-code-completion(keyword, show, let)
-let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
+let /*#-editable-code Name*/cars/*#-end-editable-code*/ = [/*#-editable-code items*/🚗, 🚕, 🚙, 🚌, 🚎, 🏎/*#-end-editable-code*/]
 //#-hidden-code
     .visualized
 //#-end-hidden-code

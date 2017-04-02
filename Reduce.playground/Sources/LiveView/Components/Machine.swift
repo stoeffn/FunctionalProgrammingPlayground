@@ -1,6 +1,7 @@
 import PlaygroundSupport
 import SpriteKit
 
+/// Machine the houses multiple components and is a component itself.
 public final class Machine: Composable {
     public let node = SKNode()
 

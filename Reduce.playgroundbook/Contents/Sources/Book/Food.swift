@@ -12,11 +12,7 @@ public let 🌾: Food = "🌾"
 public let 🐖: Food = "🐖"
 
 
-extension Food: ItemSerializable {
-    public var title: String {
-        return self
-    }
-
+extension Food {
     /// Whether this food item is an apple or something else.
     public var isApple: Bool {
         return [🍏, 🍎].contains(self)

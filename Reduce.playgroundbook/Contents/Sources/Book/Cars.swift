@@ -1,3 +1,6 @@
+/// The speed of somthing im miles per hour.
+public typealias Speed = Int
+
 /// Represents any type of car, which may have an electric engine and has a maximum speed.
 public struct Car {
     /// An emoji representation of this car.
@@ -6,7 +9,10 @@ public struct Car {
     /// Whether the car has an electric engine.
     public let isElectric: Bool
 
-    /// The maximum speed in kilometers per hour.
+    /// Whether this car is a bus.
+    public let isBus: Bool
+
+    /// The maximum speed in miles per hour.
     public let maxSpeed: Speed
 }
 
@@ -24,9 +30,9 @@ extension Car: Equatable {
     }
 }
 
-public let 🚗 = Car(emoji: "🚗", isElectric: true, maxSpeed: 225)
-public let 🚕 = Car(emoji: "🚕", isElectric: false, maxSpeed: 200)
-public let 🚙 = Car(emoji: "🚙", isElectric: true, maxSpeed: 210)
-public let 🏎 = Car(emoji: "🏎", isElectric: false, maxSpeed: 340)
-public let 🚌 = Car(emoji: "🚌", isElectric: false, maxSpeed: 160)
-public let 🚎 = Car(emoji: "🚎", isElectric: true, maxSpeed: 120)
+public let 🚗 = Car(emoji: "🚗", isElectric: true, isBus: false, maxSpeed: 120)
+public let 🚕 = Car(emoji: "🚕", isElectric: false, isBus: false, maxSpeed: 100)
+public let 🚙 = Car(emoji: "🚙", isElectric: true, isBus: false, maxSpeed: 93)
+public let 🏎 = Car(emoji: "🏎", isElectric: false, isBus: false, maxSpeed: 184)
+public let 🚌 = Car(emoji: "🚌", isElectric: false, isBus: true, maxSpeed: 70)
+public let 🚎 = Car(emoji: "🚎", isElectric: true, isBus: true, maxSpeed: 65)

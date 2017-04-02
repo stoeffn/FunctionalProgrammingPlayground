@@ -1,6 +1,7 @@
 import PlaygroundSupport
 import SpriteKit
 
+/// A one-time item spawner.
 final class Spawner: Composable {
     let node: SKNode = SKNode()
 

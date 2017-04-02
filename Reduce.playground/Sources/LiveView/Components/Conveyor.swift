@@ -1,6 +1,7 @@
 import PlaygroundSupport
 import SpriteKit
 
+/// Conveyor that moves items.
 final class Conveyor: Composable, Bordered {
     let node: SKNode = SKCropNode()
     let length: CGFloat
@@ -35,6 +36,7 @@ final class Conveyor: Composable, Bordered {
         setupBorder()
     }
 
+    /// Moves the items given from top to bottom and then delegates to the output.
     func process(_ items: [Int: Item]) {
         let duration = movementDuration(forDistance: length)
         let movement = SKAction.move(by: CGVector(dx: 0, dy: -length), duration: duration)
