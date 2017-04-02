@@ -157,7 +157,7 @@ final class Operation: Composable {
     private func indicator(forLane lane: Int) -> SKSpriteNode {
         let indicator = SKSpriteNode(texture: indicatorTexture)
         indicator.position = CGPoint(x: xPosition(forLane: lane), y: (size.height - indicatorTexture.size().height) / 2)
-        indicator.zPosition = 1
+        indicator.zPosition = 2
         indicator.alpha = 0.9
         return indicator
     }

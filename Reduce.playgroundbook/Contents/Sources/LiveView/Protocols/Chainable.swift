@@ -23,5 +23,7 @@ protocol Chainable: class {
     /// The relative position from the origin to where the next component's input anchor is.
     var outputAnchor: CGPoint { get }
 
+    /// Positions the component in a certain way. Usually, the new component's input anchor gets set to the previous
+    /// component's output anchor.
     func attach(to chainable: Chainable)
 }

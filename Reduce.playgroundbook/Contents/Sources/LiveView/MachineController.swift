@@ -90,6 +90,9 @@ public final class MachineController: UIViewController {
 
     // MARK: - Machine
 
+    /// The items will be added to this container instead of the scene because with this setup, one can move all items
+    /// with one "handle". This is especially useful for when the machine position changes and the items should move
+    /// along.
     private lazy var itemContainer = SKNode()
 
     /// The machine currently presented by the controller. Setting it to `nil` will remove the current machine and show

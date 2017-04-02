@@ -17,6 +17,7 @@ extension Composable {
     }
 }
 
+/// The type for a component type name string. Used for parsing.
 func componentType(for type: String?) -> Composable.Type? {
     guard let type = type else { return nil }
 
