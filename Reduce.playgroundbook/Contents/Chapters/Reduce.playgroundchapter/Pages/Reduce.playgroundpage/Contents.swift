@@ -25,7 +25,7 @@ let page = PlaygroundPage.current
 machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 //#-end-hidden-code
 //#-code-completion(everything, hide)
-//#-code-completion(identifier, show, cars, car, isElectric, speed, reduce, .)
+//#-code-completion(identifier, show, cars, car, isElectric, speed, reduce, lhs, rhs, .)
 //#-code-completion(keyword, show, let)
 let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
 //#-hidden-code
@@ -35,12 +35,12 @@ let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
 let maxSpeed = cars
     .filter { car in car.isElectric }
     .map { car in car.maxSpeed }
-    .reduce(<#T##Initial Value##Speed#>) { lhs, rhs in <#T##Combination##Speed#> }
+    .reduce(<#T##Initial Value##Int#>) { lhs, rhs in <#T##Combination##Speed#> }
 //#-end-editable-code
 //#-hidden-code
 triggerMachine()
 
-if maxSpeed == 225 {
+if maxSpeed is Speed && maxSpeed == 225 {
     page.assessmentStatus = .pass(
         message: "**Well Done!** You learned how to combine the values of an entire array ✌️\n\n**[Recap](@next)**")
 } else {

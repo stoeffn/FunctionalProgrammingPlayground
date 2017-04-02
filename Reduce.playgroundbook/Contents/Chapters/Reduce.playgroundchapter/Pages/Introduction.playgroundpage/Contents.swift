@@ -21,13 +21,15 @@ machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 //#-editable-code
 let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
 //#-end-editable-code
-var maxElectricCarSpeed = 0
+var maxSpeed = 0
 for car in cars {
     if car.isElectric {
         let speed = car.maxSpeed
-        maximumElectricCarSpeed = max(speed, maximumElectricCarSpeed)
+        maxSpeed = max(speed, maxSpeed)
     }
 }
 //#-hidden-code
 triggerMachine()
+
+page.assessmentStatus = .pass(message: "**Let's Make It Functional!**\n\n**[Next Page](@next)**")
 //#-end-hidden-code

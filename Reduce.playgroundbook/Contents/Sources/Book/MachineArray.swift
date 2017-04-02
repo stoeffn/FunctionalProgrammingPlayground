@@ -22,6 +22,12 @@ public struct MachineArray<Element> where Element: ItemSerializable, Element: Eq
         return items[position]!
     }
 
+    var array: [Element] {
+        return items
+            .sorted { $0.0 < $1.0 }
+            .map { $1 }
+    }
+
     public func filter(_ isIncluded: @escaping (Element) throws -> Bool) rethrows -> MachineArray<Element> {
         let result = try items.filterPairs { try isIncluded($1) }
         machineProxy?.send(command: .addComponent(operation(with: result, method: .filter)))
@@ -44,15 +50,12 @@ public struct MachineArray<Element> where Element: ItemSerializable, Element: Eq
         return result
     }
 
-    public static func == (machineArray: MachineArray<Element>, rhs: Array<Element>) -> Bool {
-        let lhs = machineArray.items
-            .sorted { $0.0 < $1.0 }
-            .map { $1 }
-        return lhs == rhs
+    public static func == (machineArray: MachineArray<Element>, array: Array<Element>) -> Bool {
+        return machineArray.array == array
     }
 
-    public static func == (lhs: Array<Element>, rhs: MachineArray<Element>) -> Bool {
-        return rhs == lhs
+    public static func == (array: Array<Element>, machineArray: MachineArray<Element>) -> Bool {
+        return machineArray == array
     }
 }
 

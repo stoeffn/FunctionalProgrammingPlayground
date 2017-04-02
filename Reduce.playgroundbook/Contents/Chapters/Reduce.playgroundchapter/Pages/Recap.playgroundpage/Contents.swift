@@ -1,11 +1,11 @@
 /*:
  # Recap 🎓
 
- Functional programming provides concise ways for declarativly expressing a problem rather than the solution. If this tip of the iceberg got you intrigued you should definitly check out more tutorials on this topic 😉
+ Functional programming provides concise ways for declarativly expressing a problem rather than the solution, which can help you *reduce* boilerplate code. If this tip of the iceberg got you intrigued you should definitly check out more tutorials on this topic 😉
  
  # Making It Even Simpler 😱
  
- Using the power of Swift, you can simplify your code even more! There are implicit closure parameters and a built-in `max`-method for arrays!
+ Using the power of Swift, you can simplify your code even more! Notice the implicit closure parameters and a built-in `max`-method for arrays?
 
  **Just play around and apply what you've learned ☺️**
  
@@ -13,7 +13,7 @@
  
  ---
  
- *I hope you enjoyed my Swift Playground—Thanks for considering me!
+ *I hope you enjoyed my Swift Playground—Thanks for considering me!*
  */
 //#-hidden-code
 import PlaygroundSupport

@@ -14,20 +14,20 @@ machineProxy = PlaygroundRemoteLiveViewProxy()
 //#-end-hidden-code
 
 //#-editable-code Do your magic!
-let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎, 🚓]
+let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
 //#-hidden-code
     .visualized
 //#-end-hidden-code
 
 //#-editable-code
 //#-copy-source(code)
-let electricCars = cars
-    .filter { car in car.isElectric }
+//let electricCars = cars
+//    .filter { car in car.isElectric }
 
-/*let maxElectricCarSpeed = cars
+let maxElectricCarSpeed = cars
     .filter { $0.isElectric }
     .map { $0.maxSpeed }
-    .reduce(0, max)*/
+    .reduce(0, max)
 //#-end-editable-code
 
 //#-hidden-code

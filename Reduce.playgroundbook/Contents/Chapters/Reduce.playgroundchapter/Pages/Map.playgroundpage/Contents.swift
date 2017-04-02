@@ -23,7 +23,7 @@ let page = PlaygroundPage.current
 machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 //#-end-hidden-code
 //#-code-completion(everything, hide)
-//#-code-completion(identifier, show, cars, car, isElectric, speed, .)
+//#-code-completion(identifier, show, cars, car, isElectric, maxSpeed, .)
 //#-code-completion(keyword, show, let)
 let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
     //#-hidden-code
@@ -37,12 +37,14 @@ let speeds = cars
 //#-hidden-code
 triggerMachine()
 
-if speeds == [225, 210, 120] {
+// If `speeds` has a wrong type, the compiler will yield an error. In order to hide this kind of error, the textual
+// representation is being compared instead.
+if speeds.description == "[225, 210, 120]" {
     page.assessmentStatus = .pass(
         message: "**Well Done!** You just converted an entire array using—again—just one line of code 👌\n\n**[Next Page](@next)**")
 } else {
     page.assessmentStatus = .fail(hints: [
-        "There is a `speed` property that might help you 😉"
+        "There is a `maxSpeed` property that might help you 😉"
     ], solution: nil)
 }
 //#-end-hidden-code

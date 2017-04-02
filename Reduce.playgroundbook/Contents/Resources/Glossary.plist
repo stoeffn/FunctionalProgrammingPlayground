@@ -4,17 +4,78 @@
 <dict>
 	<key>Terms</key>
 	<dict>
+		<key>imperative programming</key>
+		<dict>
+			<key>Definition</key>
+			<string>Programming paradigm that uses statements that describe commands/steps for a program to perform in order to accomplish a goal. Focuses on the *how*.</string>
+		</dict>
+		<key>declarative programming</key>
+		<dict>
+			<key>Definition</key>
+			<string>Programming paradigm that describes the logic of a solution rather than its implementation. Focuses on the *what*.</string>
+		</dict>
+		<key>functional programming</key>
+		<dict>
+			<key>Definition</key>
+			<string>Programming paradigm that is a superset of declarative programming. Focuses on immutability and statelessness. Often associated with mathmatical functions.</string>
+		</dict>
 		<key>filter</key>
 		<dict>
 			<key>Definition</key>
-			<string>TODO</string>
+			<string>Functional method that filters array items, i.e. it returns a new array without elements that don&apos;t fulfill a certain condition.</string>
 			<key>FirstUse</key>
 			<dict>
 				<key>PageReference</key>
-				<string>Algorithms/The%20Right-Hand%20Rule</string>
+				<string>Reduce/Filter</string>
 				<key>Title</key>
-				<string>Algorithms</string>
+				<string>Filter</string>
 			</dict>
+		</dict>
+		<key>reduce</key>
+		<dict>
+			<key>Definition</key>
+			<string>Functional method that takes an initial value as well as a closure that combines two values. Iterates over an array and returns a single accumulated value.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Reduce/Reduce</string>
+				<key>Title</key>
+				<string>Reduce</string>
+			</dict>
+		</dict>
+		<key>map</key>
+		<dict>
+			<key>Definition</key>
+			<string>Functional method that applies a function to each element in an array, i.e. converts whole arrays.</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Reduce/Map</string>
+				<key>Title</key>
+				<string>Map</string>
+			</dict>
+		</dict>
+		<key>closure</key>
+		<dict>
+			<key>Definition</key>
+			<string>&quot;miniature function&quot; that can be passed around like any other value. This is to say, you can pass functions and methods as parameters.</string>
+		</dict>
+		<key>implicit closure parameter</key>
+		<dict>
+			<key>Definition</key>
+			<string>Instead of having to provide closure parameters explicitly, Swift lets you omit them and you can use them as `$0`, `$1`, ...</string>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Reduce/Recap</string>
+				<key>Title</key>
+				<string>Recap</string>
+			</dict>
+		</dict>
+		<key>boilerplate code</key>
+		<dict>
+			<key>Definition</key>
+			<string>Code that must be repeated every time something needs to be done, i.e. writing a loop for imperative filtering.</string>
 		</dict>
 	</dict>
 </dict>
