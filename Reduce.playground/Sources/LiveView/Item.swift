@@ -25,7 +25,7 @@ final class Item {
 
     // MARK: - Helpers
 
-    /// Converts a dictionary of item configurations to a list of items.
+    /// Converts a dictionary of item configurations to an array of items.
     static func multipleFrom(configuration: Configuration?) -> [Int: Item] {
         return (configuration ?? [:])
             .mapPairs { (Int($0)!, Item($1.dictionary)) }

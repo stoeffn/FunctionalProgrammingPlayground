@@ -6,7 +6,7 @@ public struct Car {
     /// Whether the car has an electric engine.
     public let isElectric: Bool
 
-    /// The maximum speed in kilometers per hour.
+    /// The maximum speed in miles per hour.
     public let maxSpeed: Speed
 }
 
@@ -24,9 +24,9 @@ extension Car: Equatable {
     }
 }
 
-public let 🚗 = Car(emoji: "🚗", isElectric: true, maxSpeed: 225)
-public let 🚕 = Car(emoji: "🚕", isElectric: false, maxSpeed: 200)
-public let 🚙 = Car(emoji: "🚙", isElectric: true, maxSpeed: 210)
-public let 🏎 = Car(emoji: "🏎", isElectric: false, maxSpeed: 340)
-public let 🚌 = Car(emoji: "🚌", isElectric: false, maxSpeed: 160)
-public let 🚎 = Car(emoji: "🚎", isElectric: true, maxSpeed: 120)
+public let 🚗 = Car(emoji: "🚗", isElectric: true, maxSpeed: 120)
+public let 🚕 = Car(emoji: "🚕", isElectric: false, maxSpeed: 100)
+public let 🚙 = Car(emoji: "🚙", isElectric: true, maxSpeed: 93)
+public let 🏎 = Car(emoji: "🏎", isElectric: false, maxSpeed: 184)
+public let 🚌 = Car(emoji: "🚌", isElectric: false, maxSpeed: 70)
+public let 🚎 = Car(emoji: "🚎", isElectric: true, maxSpeed: 65)

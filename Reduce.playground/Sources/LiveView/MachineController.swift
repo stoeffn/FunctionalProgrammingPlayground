@@ -1,7 +1,7 @@
 import SpriteKit
 import UIKit
 
-/// Responsible for controlling the scene that visualizes list operations.
+/// Responsible for controlling the scene that visualizes array operations.
 public final class MachineController: UIViewController {
     // MARK: - Life Cycle
 

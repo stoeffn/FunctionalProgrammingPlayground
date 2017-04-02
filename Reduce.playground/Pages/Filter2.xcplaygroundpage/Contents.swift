@@ -3,7 +3,7 @@
 
  ## Making It Even Simpler
 
- Filtering a list of items this way can be quite verbose because one needs to describe every step rather than what needs to be done.
+ Filtering an array of items this way can be quite verbose because one needs to describe every step rather than what needs to be done.
 
  Using the power of Swift, we can reduce our functional approach even more:
 
@@ -14,7 +14,7 @@
  
  ## Oh-Oh
  
- Did you check the expiration date? Me neither. Use your new filtering-skills for good and make sure there is no ingredient with an `age` over `4` in our list!
+ Did you check the expiration date? Me neither. Use your new filtering-skills for good and make sure there is no ingredient with an `age` over `4` in our array!
  */
 
 //ingredients

@@ -41,7 +41,7 @@ let maxSpeed = cars
 Machine.addBin()
 Machine.trigger()
 
-if maxSpeed is Speed && maxSpeed == 225 {
+if maxSpeed is Speed && maxSpeed == 120 {
     page.assessmentStatus = .pass(
         message: "**Well Done!** You learned how to combine the values of an entire array ✌️\n\n**[Recap](@next)**")
 } else {

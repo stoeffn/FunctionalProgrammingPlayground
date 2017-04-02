@@ -4,6 +4,8 @@
 <dict>
 	<key>SwiftVersion</key>
 	<string>3.1</string>
+	<key>Author</key>
+	<string>Steffen Ryll</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>ContentVersion</key>

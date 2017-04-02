@@ -3,11 +3,11 @@
 
  Great! We've got a filtered array of the cars we want. What we need to do now is get each car's speed as this is the only property we car about.
  
- However, it would be quite cumbersome to iterate over our array of electric cars and adding each car's speed to a new array. In a sense, we want to convert or *map* each car. The term mapping stems from mathmatics, by the way ☺️
+ However, it would be quite cumbersome to iterate over our array of electric cars and adding each car's speed to a new array. In a sense, we want to convert or *map* each car.
 
  # Mastering Mapping 🗺
 
- The `map` method applies a transform to each item in a list, individually. What's more, we just have to provide a method that operates on a single car.
+ The `map` method applies a transform to each item in an array, individually. What's more, we just have to provide a method that operates on a single car.
 
  * callout(Mapping):
  ````cars.map(transform: (Car) -> Any)````
@@ -40,9 +40,9 @@ Machine.trigger()
 
 // If `speeds` has a wrong type, the compiler will yield an error. In order to hide this kind of error, the textual
 // representation is being compared instead.
-if speeds.description == "[225, 210, 120]" {
+if speeds.description == "[120, 93, 65]" {
     page.assessmentStatus = .pass(
-        message: "**Well Done!** You just converted an entire array using—again—just one line of code 👌\n\n**[Next Page](@next)**")
+        message: "**Well Done!** You've just converted an entire array using—again—just one line of code 👌\n\n**[Next Page](@next)**")
 } else {
     page.assessmentStatus = .fail(hints: [
         "There is a `maxSpeed` property that might help you 😉"
