@@ -18,7 +18,7 @@ final class Operation: Composable {
     let method: Method
     let description: String
 
-    private let removalConveyorLength: CGFloat = 512
+    private let removalConveyorLength: CGFloat = 768
 
     weak var input: Chainable?
     var output: Chainable?
