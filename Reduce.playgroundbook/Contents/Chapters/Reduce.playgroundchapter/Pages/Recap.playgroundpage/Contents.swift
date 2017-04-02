@@ -9,12 +9,10 @@
 
  **Just play around and apply what you've learned ☺️**
  
- * Experiment: ````
- let food = [🥔, 🌾, 🐖]
-    .map { $0.processed }
- ````
+ * Experiment: `let food = [🥔, 🌾, 🐖]`\
+ `    .map { $0.processed }`
  
- *The animation on the right will adapt automatically to your code. Maybe try adding new operations? Or cook some food?*
+ *Try adding new operations or cook some food by replacing the car array 😉*
  
  ---
  
