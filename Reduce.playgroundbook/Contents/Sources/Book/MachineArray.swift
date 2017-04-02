@@ -58,10 +58,3 @@ public struct MachineArray<Element> where Element: ItemSerializable, Element: Eq
         return machineArray == array
     }
 }
-
-public func triggerMachine() {
-    guard let proxy = machineProxy else {
-        fatalError("Proxy not available.")
-    }
-    proxy.send(command: .trigger)
-}

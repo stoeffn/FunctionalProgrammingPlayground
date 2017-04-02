@@ -31,7 +31,8 @@ let maxElectricCarSpeed = cars
 //#-end-editable-code
 
 //#-hidden-code
-triggerMachine()
+Machine.addBin()
+Machine.trigger()
 //#-end-hidden-code
 
 //: [Next](@next)

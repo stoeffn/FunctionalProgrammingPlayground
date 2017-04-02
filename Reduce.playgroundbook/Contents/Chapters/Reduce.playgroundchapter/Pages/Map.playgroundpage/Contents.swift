@@ -35,7 +35,8 @@ let speeds = cars
     .map { car in <#Operation#> }
 //#-end-editable-code
 //#-hidden-code
-triggerMachine()
+Machine.addBin()
+Machine.trigger()
 
 // If `speeds` has a wrong type, the compiler will yield an error. In order to hide this kind of error, the textual
 // representation is being compared instead.

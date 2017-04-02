@@ -14,7 +14,7 @@
 
  It may seem intimidating at first, but let's take a closer look at this method, which will prove useful in a variety of places.
  
- `reduce` takes an initial value as well as a closure that combines two values. In our case, we want this closure to return the maximum of those two values.
+ `reduce` takes an initial value as well as a closure that combines two values. In our case, we want this closure to return the maximum of those two values. This is, what the global `max` function does.
 
  **Try to use the `reduce` method in a way that produces the desired value.**
  */
@@ -25,7 +25,7 @@ let page = PlaygroundPage.current
 machineProxy = page.liveView as! PlaygroundRemoteLiveViewProxy
 //#-end-hidden-code
 //#-code-completion(everything, hide)
-//#-code-completion(identifier, show, cars, car, isElectric, speed, reduce, lhs, rhs, .)
+//#-code-completion(identifier, show, cars, car, isElectric, speed, reduce, lhs, rhs, max, .)
 //#-code-completion(keyword, show, let)
 let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
 //#-hidden-code
@@ -35,17 +35,19 @@ let cars = [🚗, 🚕, 🚙, 🚌, 🚎, 🏎]
 let maxSpeed = cars
     .filter { car in car.isElectric }
     .map { car in car.maxSpeed }
-    .reduce(<#T##Initial Value##Int#>) { lhs, rhs in <#T##Combination##Speed#> }
+    .reduce(<#T##Initial Value##Int#>) { lhs, rhs in <#Combination#> }
 //#-end-editable-code
 //#-hidden-code
-triggerMachine()
+Machine.addBin()
+Machine.trigger()
 
 if maxSpeed is Speed && maxSpeed == 225 {
     page.assessmentStatus = .pass(
         message: "**Well Done!** You learned how to combine the values of an entire array ✌️\n\n**[Recap](@next)**")
 } else {
     page.assessmentStatus = .fail(hints: [
-        "The global `max` function returns the maximum of its input, which might be useful 🤔"
+        "The global `max` function returns the maximum of its inputs, which might be useful 🤔",
+        "Consider that we only have positive speeds, when choosing the initial value 😉"
     ], solution: nil)
 }
 //#-end-hidden-code

@@ -31,3 +31,9 @@ public var destroyer: Configuration {
         "type": .string(String(describing: Destroyer.self))
     ]
 }
+
+public var bin: Configuration {
+    return [
+        "type": .string(String(describing: Bin.self))
+    ]
+}

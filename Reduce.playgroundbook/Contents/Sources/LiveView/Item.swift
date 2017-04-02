@@ -9,7 +9,7 @@ final class Item {
 
     init(title: String) {
         label.text = title
-        label.fontSize = size.height * 0.6
+        label.fontSize = fontSize(forTextLength: title.characters.count)
         label.verticalAlignmentMode = .center
         node.addChild(label)
     }
@@ -35,5 +35,13 @@ final class Item {
 
     var size: CGSize {
         return CGSize(width: conveyorWidth, height: conveyorWidth)
+    }
+
+    func fontSize(forTextLength textLength: Int) -> CGFloat {
+        switch textLength {
+        case 0...1: return size.height * 0.6
+        case 2...4: return size.height * 0.4
+        default: return size.height * 0.2
+        }
     }
 }

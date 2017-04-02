@@ -1,7 +1,7 @@
 /*:
  # Welcome 😀
 
- In this Swift Playground, you will learn how to apply some basic methods from *functional programming*. They will help you write cleaner, more consice, and thus more readable code. However, a complete introduction to functional programming is outside the scope of this playground, which is intended as a short inspiration of what may be a cool thing to learn.
+ In this Swift Playground, you will learn how to apply some basic methods from [functional programming](glossary://functional%20programming). They will help you write cleaner, more consice, and thus more readable code. However, a complete introduction to functional programming is outside the scope of this playground, which is intended as a short inspiration of what may be a cool thing to learn.
 
  # Going All Electric! 💡
  
@@ -14,7 +14,7 @@
  * callout(Filtering):
  `cars.filter(isIncluded: (Car) -> Bool)`
  
- As you can see, one can state the problem at hand in a *declarative* way, without having to know about the internal implementation. How cool is that? We just provide a closure that—for each car—decides whether it should be included in the resulting array.
+ As you can see, one can state the problem at hand in a [declarative](glossary://declarative%20programming) way, without having to know about the internal implementation. How cool is that? We just provide a [closure](glossary://closure) that—for each car—decides whether it should be included in the resulting array.
 
  **Modify the code below in a way that `electricCars` only contains cars that have an electric engine!**
 
@@ -38,7 +38,8 @@ let electricCars = cars
     .filter { car in <#T##Condition##Bool#> }
 //#-end-editable-code
 //#-hidden-code
-triggerMachine()
+Machine.addBin()
+Machine.trigger()
 
 if electricCars == [🚗, 🚙, 🚎] {
     page.assessmentStatus = .pass(
