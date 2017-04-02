@@ -9,3 +9,5 @@ let indicatorTexture = SKTexture(image: #imageLiteral(resourceName: "Indicator.p
 let filterCasingTexture = SKTexture(image: #imageLiteral(resourceName: "Filter.png"))
 let mapCasingTexture = SKTexture(image: #imageLiteral(resourceName: "Map.png"))
 let reduceCasingTexture = SKTexture(image: #imageLiteral(resourceName: "Reduce.png"))
+
+let binTexture = SKTexture(image: #imageLiteral(resourceName: "Bin.png"))

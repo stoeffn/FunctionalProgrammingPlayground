@@ -26,12 +26,6 @@ func operation(with items: [Int: ItemSerializable], method: Operation.Method) ->
     ]
 }
 
-public var destroyer: Configuration {
-    return [
-        "type": .string(String(describing: Destroyer.self))
-    ]
-}
-
 public var bin: Configuration {
     return [
         "type": .string(String(describing: Bin.self))

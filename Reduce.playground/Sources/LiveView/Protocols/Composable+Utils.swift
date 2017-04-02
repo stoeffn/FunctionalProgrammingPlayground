@@ -25,8 +25,6 @@ func componentType(for type: String?) -> Composable.Type? {
         return Spawner.self
     case "conveyor":
         return Conveyor.self
-    case "destroyer":
-        return Destroyer.self
     case "bin":
         return Bin.self
     case "filter", "map", "reduce":

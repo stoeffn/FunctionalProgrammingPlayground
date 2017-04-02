@@ -51,7 +51,7 @@ controller.machine = Machine([
         "type": .string("Conveyor")
     ]),
     .dictionary([
-        "type": .string("Destroyer")
+        "type": .string("Bin")
     ])
 ])
 controller.machine?.trigger()
