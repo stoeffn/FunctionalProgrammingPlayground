@@ -23,6 +23,7 @@ final class Operation: Composable {
 
     weak var input: Chainable?
     var output: Chainable?
+    weak var itemContainer: SKNode?
     var items: [Int: Item]
 
     // MARK: - Life Cycle
@@ -101,8 +102,8 @@ final class Operation: Composable {
         defer { removeItem(atLane: lane, oldItem, animated: animated) }
         guard let newItem = items[lane] ?? nil else { return nil }
 
-        newItem.node.position = absolutePosition(forItemAtLane: lane, replacingItem: oldItem, numberOfLanes: numberOfOutputLanes)
-        oldItem.node.scene?.addChild(newItem.node)
+        newItem.node.position = position(forItemAtLane: lane, replacingItem: oldItem, numberOfLanes: numberOfOutputLanes)
+        itemContainer?.addChild(newItem.node)
         return newItem
     }
 
@@ -116,7 +117,7 @@ final class Operation: Composable {
         let delay = SKAction.wait(forDuration: Double(numberOfInputLanes - lane) / 4)
         let movement = SKAction.move(by: CGVector(dx: removalConveyorLength, dy: 0), duration: duration)
 
-        item.node.position = absolutePosition(forItemAtLane: numberOfInputLanes - 1)
+        item.node.position = position(forItemAtLane: numberOfInputLanes - 1)
         item.node.run(.sequence([delay, movement])) {
             item.node.removeFromParent()
         }
@@ -129,7 +130,7 @@ final class Operation: Composable {
         node.centerRect = CGRect(x: 0.4, y: 0, width: 0.2, height: 1)
         node.xScale = (self.size.width + 32) / self.method.casingTexture.size().width
         node.yScale = self.size.height / self.method.casingTexture.size().height
-        node.zPosition = 1
+        node.zPosition = 2
         return node
     }()
 
@@ -138,7 +139,7 @@ final class Operation: Composable {
         label.verticalAlignmentMode = .center
         label.color = .white
         label.fontSize = self.size.height / 4
-        label.zPosition = 1
+        label.zPosition = 2
         return label
     }()
 

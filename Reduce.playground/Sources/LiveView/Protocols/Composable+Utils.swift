@@ -7,9 +7,9 @@ extension Composable {
         return (CGFloat(lane) - CGFloat(numberOfLanes - 1) / 2) * conveyorWidth
     }
 
-    func absolutePosition(forItemAtLane lane: Int, replacingItem oldItem: Item? = nil, numberOfLanes: Int? = nil) -> CGPoint {
-        return CGPoint(x: node.absolutePosition.x + xPosition(forLane: lane, numberOfLanes: numberOfLanes),
-                       y: oldItem?.node.absolutePosition.y ?? node.absolutePosition.y)
+    func position(forItemAtLane lane: Int, replacingItem oldItem: Item? = nil, numberOfLanes: Int? = nil) -> CGPoint {
+        return CGPoint(x: xPosition(forLane: lane, numberOfLanes: numberOfLanes),
+                       y: oldItem?.node.position.y ?? node.position.y)
     }
 
     func movementDuration(forDistance distance: CGFloat) -> TimeInterval {

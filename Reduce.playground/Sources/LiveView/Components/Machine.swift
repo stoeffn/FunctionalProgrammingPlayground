@@ -10,6 +10,7 @@ public final class Machine: Composable {
         get { return lastComponent?.output }
         set { lastComponent?.output = newValue }
     }
+    weak var itemContainer: SKNode?
 
     var firstComponent: Composable?
     weak var lastComponent: Composable?
@@ -74,6 +75,7 @@ public final class Machine: Composable {
         previousComponent.output = component
 
         component.input = previousComponent
+        component.itemContainer = itemContainer
         component.attach(to: previousComponent)
         component.updateAppearance()
 

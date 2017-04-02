@@ -8,6 +8,8 @@ final class Item {
     // MARK: - Life Cycle
 
     init(title: String) {
+        node.zPosition = 1
+
         label.text = title
         label.fontSize = fontSize(forTextLength: title.characters.count)
         label.verticalAlignmentMode = .center

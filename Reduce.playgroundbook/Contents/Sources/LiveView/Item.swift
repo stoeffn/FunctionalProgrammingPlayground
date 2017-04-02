@@ -8,6 +8,8 @@ final class Item {
     // MARK: - Life Cycle
 
     init(title: String) {
+        node.zPosition = 1
+
         label.text = title
         label.fontSize = fontSize(forTextLength: title.characters.count)
         label.verticalAlignmentMode = .center
@@ -41,7 +43,7 @@ final class Item {
         switch textLength {
         case 0...1: return size.height * 0.6
         case 2...4: return size.height * 0.4
-        case 6...6: return size.height * 0.3
+        case 5...6: return size.height * 0.25
         default: return size.height * 0.2
         }
     }

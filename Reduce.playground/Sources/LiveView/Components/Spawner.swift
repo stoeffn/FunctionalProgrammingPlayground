@@ -7,6 +7,7 @@ final class Spawner: Composable {
 
     weak var input: Chainable?
     var output: Chainable?
+    weak var itemContainer: SKNode?
     var numberOfInputLanes: Int
     var items: [Int: Item]
 
@@ -24,13 +25,14 @@ final class Spawner: Composable {
 
     // MARK: - Component
 
+    /// Spawns the pre-configured items and commands its output to process them.
     func trigger() {
         items
             .map { lane, item in
-                item.node.position = absolutePosition(forItemAtLane: lane)
+                item.node.position = position(forItemAtLane: lane)
                 return item.node
             }
-            .forEach { node.scene?.addChild($0) }
+            .forEach { itemContainer?.addChild($0) }
 
         let outputComponent = output as? Composable
         outputComponent?.process(items)

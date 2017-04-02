@@ -7,6 +7,7 @@ final class Bin: Composable {
 
     weak var input: Chainable?
     var output: Chainable?
+    weak var itemContainer: SKNode?
     var items: [Int : Item] = [:]
 
     // MARK: - Life Cycle

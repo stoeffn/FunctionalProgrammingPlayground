@@ -1,6 +1,12 @@
 /// The speed of somthing im miles per hour.
 public typealias Speed = Int
 
+extension Speed: ItemSerializable {
+    public var title: String {
+        return String(self) + "mph"
+    }
+}
+
 /// Represents any type of car, which may have an electric engine and has a maximum speed.
 public struct Car {
     /// An emoji representation of this car.

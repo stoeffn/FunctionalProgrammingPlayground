@@ -4,12 +4,6 @@ extension Bool: ItemSerializable {
     }
 }
 
-extension Int: ItemSerializable {
-    public var title: String {
-        return String(self)
-    }
-}
-
 extension Double: ItemSerializable {
     public var title: String {
         return String(self)

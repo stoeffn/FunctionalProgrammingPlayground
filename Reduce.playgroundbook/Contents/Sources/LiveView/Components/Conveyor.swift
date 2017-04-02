@@ -8,6 +8,7 @@ final class Conveyor: Composable, Bordered {
 
     weak var input: Chainable?
     var output: Chainable?
+    weak var itemContainer: SKNode?
 
     // MARK: - Life Cycle
 

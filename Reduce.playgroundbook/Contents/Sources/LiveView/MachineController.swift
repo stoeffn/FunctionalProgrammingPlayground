@@ -60,7 +60,7 @@ public final class MachineController: UIViewController {
     private lazy var placeholderView: UIVisualEffectView = {
         let view = UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: .light)))
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalToConstant: 386).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 384).isActive = true
 
         view.contentView.addSubview(self.placeholderTitle)
         self.placeholderTitle.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -90,15 +90,21 @@ public final class MachineController: UIViewController {
 
     // MARK: - Machine
 
+    private lazy var itemContainer = SKNode()
+
     /// The machine currently presented by the controller. Setting it to `nil` will remove the current machine and show
     /// a placeholder insteat. Adding a machine will attach it to the top and display it automatically.
     public var machine: Machine? {
         didSet {
             placeholderView.isHidden = machine != nil
+
+            itemContainer.removeFromParent()
             oldValue?.node.removeFromParent()
 
             if let machine = machine {
                 machine.attach(to: topAnchor)
+                machine.itemContainer = itemContainer
+                machine.node.addChild(itemContainer)
                 scene.addChild(machine.node)
             }
         }
